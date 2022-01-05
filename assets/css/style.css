@@ -1,6 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --primary-color: black;
+    --secondary-color:#90AA86;
+    --tertiary-color: #4A2445;
+    --accent-color: #824c71;
+}
+
+body{
+    font-family: Montserrat, Arial, sans-serif;
+}
+
 .subnav-hero-section {
     text-align: center;
-    background: #1779ba;
+    background: var(--primary-color);
     background-size: cover;
     position: relative;
     overflow: visible;
