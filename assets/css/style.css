@@ -69,4 +69,23 @@ body{
   .subnav-hero-subnav li a:hover {
     background: rgba(254, 254, 254, 0.15);
   }
+
+.intro{
+    padding-top: 10px;
+    text-align: center;
+}
+  
+footer{
+    background-color: var(--tertiary-color);
+    padding: 1%;
+    color: white;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+  .footer-text{
+    text-align: center;
+}
   
