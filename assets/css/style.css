@@ -74,6 +74,52 @@ body{
     padding-top: 10px;
     text-align: center;
 }
+
+/* this is for the modal to work  can be re-styled */
+.modal-bg {
+  position: fixed;
+  width:100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  visibility: 0;
+  opacity: 0;
+  transition: visibility 0s opacity 0.5s; 
+}
+
+.modal {
+  background-color: white;
+  width: 60%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.checkbox-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.checkbox-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.bg-active {
+  visibility: visible;
+  opacity:1;
+  pointer-events: auto;
+}
+
+/* End of modal Css */
+
   
 footer{
     background-color: var(--tertiary-color);
