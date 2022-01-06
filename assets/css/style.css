@@ -118,6 +118,10 @@ body{
   pointer-events: auto;
 }
 
+.mov-image-width {
+  width: 15vw;
+}
+
 /* End of modal Css */
 
   

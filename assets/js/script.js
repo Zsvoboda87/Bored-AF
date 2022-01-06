@@ -4,6 +4,7 @@ var searchMoviesBtn = document.querySelector("#search-movies");
 var runGenreSearch= document.querySelector("#search-genre");
 var modalBg = document.querySelector(".modal-bg");
 var checkboxes = document.querySelectorAll(".checkbox");
+var movieSuggestions = document.querySelector(".movie-suggestion")
 
 var str = "";
 
@@ -29,6 +30,9 @@ var movieAPI = function (genre) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data)
+                var mTitle = data.results[0].title;
+                var mImageURL = data.results[0].image
+                displayMovies(mTitle, mImageURL)
         
         })} else {
             window.alert('not valid')
@@ -43,3 +47,16 @@ var resetCheckboxes = function() {
     }
 }
 
+var displayMovies = function (mTitle, mImageURL) {
+    console.log(mTitle)
+    console.log(mImageURL)
+
+    var movTitleEl = document.createElement("h3");
+    movTitleEl.textContent = mTitle;
+    movieSuggestions.appendChild(movTitleEl);
+
+    var movImageEl = document.createElement("img");
+    movImageEl.src = mImageURL
+    movImageEl.classList.add("mov-image-width")
+    movieSuggestions.appendChild(movImageEl);
+}
