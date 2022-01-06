@@ -118,14 +118,25 @@ body{
   pointer-events: auto;
 }
 
+.flex-evenly {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .mov-image-width {
   width: 20vw;
 }
 
-iframe {
-  width: 20vw;
+.video-card {
+  width: 45vw;
 }
-/* End of modal Css */
+
+iframe {
+  width:560px;
+  height:315px
+} 
+/* End of modal Css   */
 
   
 footer{
