@@ -75,7 +75,7 @@ body{
     text-align: center;
 }
 
-/* this is for the modal to work  can be re-styled */
+/* this is for the modals */
 .modal-bg {
   position: fixed;
   width:100%;
@@ -118,11 +118,13 @@ body{
   pointer-events: auto;
 }
 
-
 .mov-image-width {
-  width: 15vw;
+  width: 20vw;
 }
 
+iframe {
+  width: 20vw;
+}
 /* End of modal Css */
 
   
@@ -131,7 +133,7 @@ footer{
     padding: 1%;
     color: white;
     display: flex;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
 }
