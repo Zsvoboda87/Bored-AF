@@ -13,6 +13,9 @@ var youtubeModalBg = document.querySelector("#youtube-modal-bg")
 var searchYoutubeBtn = document.querySelector("#search-youtube");
 var runYoutubeSearch = document.querySelector("#run-youtube-search")
 var inputOne = document.querySelector("#input-1")
+var promptEl = document.querySelector("#prompt")
+var promptArray = [ "What is your Favorite Animal","What is your Favorite Food","What is your favorite sport", ]
+var j = 0;
 
 
 // functions for Movie Search
@@ -107,11 +110,18 @@ var displayVideos = function(youtubeID, vidtitle) {
 
 // Event Listeners for Youtube
 searchYoutubeBtn.addEventListener("click", function() {
-    youtubeModalBg.classList.add("bg-active")
+    youtubeModalBg.classList.add("bg-active");
+    promptEl.innerHTML = promptArray[j];
+    j++;
+
 });
 
 runYoutubeSearch.addEventListener("click", function(){
     event.preventDefault();
+    if(document.querySelector(".video-card"))
+    {
+        document.querySelectorAll(".video-card").forEach(el => el.remove());
+    }
     var keyword = inputOne.value.trim();
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
