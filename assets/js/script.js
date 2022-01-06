@@ -41,14 +41,18 @@ var resetCheckboxes = function() {
 }
 
 var displayMovies = function (mTitle, mImageURL) {
-    var movTitleEl = document.createElement("h3");
+    var movieCard = document.createElement("div")
+
+    var movTitleEl = document.createElement("h4");
     movTitleEl.textContent = mTitle;
-    movieSuggestions.appendChild(movTitleEl);
+    movieCard.appendChild(movTitleEl);
 
     var movImageEl = document.createElement("img");
     movImageEl.src = mImageURL
     movImageEl.classList.add("mov-image-width")
-    movieSuggestions.appendChild(movImageEl);
+    movieCard.appendChild(movImageEl);
+
+    movieSuggestions.appendChild(movieCard);
 }
 
 // event Listeners for Movie Search
@@ -68,16 +72,14 @@ runGenreSearch.addEventListener('click', function(){
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {
-    console.log(keyword);
     var apiUrl = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=' + keyword + '&type=video&videoDuration=short&videoEmbeddable=true&key=AIzaSyCqv1-wCJ6ZsvLMDOpmxtMGoR-VPFEhraY'
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
-                for(i=0; i < 5; i++) {
+                for(i=0; i < 4; i++) {
                 var x = data.items[i].id.videoId
                 var title = data.items[i].snippet.title
-                addVidLink(x, title)
+                displayVideos(x, title)
             }       
         })} else {
             window.alert('not valid')
@@ -85,15 +87,22 @@ var youtubeAPI = function (keyword) {
     });
 };
 
-var addVidLink = function(youtubeID, vidtitle) {
+
+var displayVideos = function(youtubeID, vidtitle) {
+    var videoCard = document.createElement("div")
+    videoCard.classList.add("video-card")
+
     var vidTitleEl = document.createElement("h3");
     vidTitleEl.textContent = vidtitle;
-    youtubeEL.appendChild(vidTitleEl);
+    videoCard.appendChild(vidTitleEl);
 
     var addLink = document.createElement("iframe");
     addLink.src = "https://www.youtube.com/embed/" + youtubeID 
-    addLink.allowfullscreen
-    youtubeEL.appendChild(addLink)
+    videoCard.appendChild(addLink)
+
+    youtubeEL.appendChild(videoCard)
+
+
 }
 
 // Event Listeners for Youtube
