@@ -29,10 +29,11 @@ var movieAPI = function (genre) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data)
-                var mTitle = data.results[0].title;
-                var mImageURL = data.results[0].image
+                for(i=0; i < 4; i++) {
+                var mTitle = data.results[i].title;
+                var mImageURL = data.results[i].image
                 displayMovies(mTitle, mImageURL)
+                }
         
         })} else {
             window.alert('not valid')
@@ -48,8 +49,8 @@ var resetCheckboxes = function() {
 }
 
 var displayMovies = function (mTitle, mImageURL) {
-    console.log(mTitle)
-    console.log(mImageURL)
+    // console.log(mTitle)
+    // console.log(mImageURL)
 
     var movTitleEl = document.createElement("h3");
     movTitleEl.textContent = mTitle;
