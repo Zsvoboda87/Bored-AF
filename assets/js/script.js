@@ -14,8 +14,8 @@ var searchYoutubeBtn = document.querySelector("#search-youtube");
 var runYoutubeSearch = document.querySelector("#run-youtube-search")
 var inputOne = document.querySelector("#input-1")
 var promptEl = document.querySelector("#prompt")
-var promptArray = [ "What is your Favorite Animal","What is your Favorite Food","What is your favorite sport", ]
-var j = 0;
+var formEl = document.querySelector("#youtube-form")
+var promptArray = [ "What is your Favorite Animal","What is your Favorite Food","What is your favorite sport","Write the first word you can think of." ]
 
 
 // functions for Movie Search
@@ -111,9 +111,7 @@ var displayVideos = function(youtubeID, vidtitle) {
 // Event Listeners for Youtube
 searchYoutubeBtn.addEventListener("click", function() {
     youtubeModalBg.classList.add("bg-active");
-    promptEl.innerHTML = promptArray[j];
-    j++;
-
+    promptEl.innerHTML = promptArray[Math.floor(Math.random() * promptArray.length)];
 });
 
 runYoutubeSearch.addEventListener("click", function(){
