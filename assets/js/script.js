@@ -19,6 +19,7 @@ var j = 0;
 
 //save watched movies var
 var watched = {};
+ 
 
 // functions for Movie Search
 var movieAPI = function (genre) {
@@ -30,7 +31,7 @@ var movieAPI = function (genre) {
                 var mTitle = data.results[i].title;
                 var mImageURL = data.results[i].image
                 displayMovies(mTitle, mImageURL)
-                }
+            }
         
         })} else {
             window.alert('not valid')
@@ -55,13 +56,12 @@ var displayMovies = function (mTitle, mImageURL) {
     var movImageEl = document.createElement("img");
     movImageEl.src = mImageURL
     movImageEl.classList.add("mov-image-width")
-    movieSuggestions.appendChild(movImageEl);
-
-    var watchedEl = document.querySelector("#watchedBtn");
-    watchedEl.style.display= "block";
-    movieSuggestions.appendChild(watchedEl);
     movieCard.appendChild(movImageEl);
 
+    var watchedEl = document.createElement("button");
+    watchedEl.textContent = "Watched";
+    watchedEl.classList.add("watchedbtn");
+    movieCard.appendChild(watchedEl);
     movieSuggestions.appendChild(movieCard);
 }
 
@@ -81,13 +81,13 @@ runGenreSearch.addEventListener('click', function(){
 })
 
 //save watched movies
-$("#watchedBtn").on("click", function () {
+var saveMovies = function (mTitle, mImageURL) {
    watched = {
        title: mTitle,
        image: mImageURL
    };
     localStorage.setItem("watched", JSON.stringify(watched));
-});
+};
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {
@@ -142,3 +142,5 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
 })
+
+watchedBtn.addEventListener("click", saveMovies);
