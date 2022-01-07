@@ -17,6 +17,9 @@ var promptEl = document.querySelector("#prompt")
 var formEl = document.querySelector("#youtube-form")
 var promptArray = [ "What is your Favorite Animal","What is your Favorite Food","What is your favorite sport","Write the first word you can think of." ]
 
+//save watched movies var
+var watched = [];
+ 
 
 // functions for Movie Search
 var movieAPI = function (genre) {
@@ -28,7 +31,7 @@ var movieAPI = function (genre) {
                 var mTitle = data.results[i].title;
                 var mImageURL = data.results[i].image
                 displayMovies(mTitle, mImageURL)
-                }
+            }
         
         })} else {
             window.alert('not valid')
@@ -47,6 +50,7 @@ var displayMovies = function (mTitle, mImageURL) {
     var movieCard = document.createElement("div")
 
     var movTitleEl = document.createElement("h4");
+    movTitleEl.setAttribute("data-mTitle", mTitle)
     movTitleEl.textContent = mTitle;
     movieCard.appendChild(movTitleEl);
 
@@ -55,6 +59,11 @@ var displayMovies = function (mTitle, mImageURL) {
     movImageEl.classList.add("mov-image-width")
     movieCard.appendChild(movImageEl);
 
+    var watchedEl = document.createElement("button");
+    watchedEl.textContent = "Watched";
+    watchedEl.classList.add("watchedbtn");
+    watchedEl.addEventListener("click", saveMovies);
+    movieCard.appendChild(watchedEl);
     movieSuggestions.appendChild(movieCard);
 }
 
@@ -72,6 +81,13 @@ runGenreSearch.addEventListener('click', function(){
     movieAPI (str);
     resetCheckboxes();
 })
+
+//save watched movies
+var saveMovies = function (e) {
+    //add localstorage
+    console.log(e.target.previousElementSibling.previousElementSibling.dataset.mtitle);
+    console.log(e.target.previousElementSibling.src);
+};
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {
