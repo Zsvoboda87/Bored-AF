@@ -18,7 +18,7 @@ var promptArray = [ "What is your Favorite Animal","What is your Favorite Food",
 var j = 0;
 
 //save watched movies var
-var watched = {};
+var watched = [];
  
 
 // functions for Movie Search
@@ -50,6 +50,7 @@ var displayMovies = function (mTitle, mImageURL) {
     var movieCard = document.createElement("div")
 
     var movTitleEl = document.createElement("h4");
+    movTitleEl.setAttribute("data-mTitle", mTitle)
     movTitleEl.textContent = mTitle;
     movieCard.appendChild(movTitleEl);
 
@@ -61,6 +62,7 @@ var displayMovies = function (mTitle, mImageURL) {
     var watchedEl = document.createElement("button");
     watchedEl.textContent = "Watched";
     watchedEl.classList.add("watchedbtn");
+    watchedEl.addEventListener("click", saveMovies);
     movieCard.appendChild(watchedEl);
     movieSuggestions.appendChild(movieCard);
 }
@@ -81,12 +83,10 @@ runGenreSearch.addEventListener('click', function(){
 })
 
 //save watched movies
-var saveMovies = function (mTitle, mImageURL) {
-   watched = {
-       title: mTitle,
-       image: mImageURL
-   };
-    localStorage.setItem("watched", JSON.stringify(watched));
+var saveMovies = function (e) {
+    //add localstorage
+    console.log(e.target.previousElementSibling.previousElementSibling.dataset.mtitle);
+    console.log(e.target.previousElementSibling.src);
 };
 
 // function for YouTube Search
@@ -142,5 +142,3 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
 })
-
-watchedBtn.addEventListener("click", saveMovies);
