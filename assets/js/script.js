@@ -15,7 +15,7 @@ var runYoutubeSearch = document.querySelector("#run-youtube-search")
 var inputOne = document.querySelector("#input-1")
 var promptEl = document.querySelector("#prompt")
 var formEl = document.querySelector("#youtube-form")
-var promptArray = [ "What is your Favorite Animal","What is your Favorite Food","What is your favorite sport","Write the first word you can think of." ]
+var promptArray = [ "What is your favorite animal?","What is your favorite food?","What is your favorite sport?","Write the first word you can think of.","What is the coolest place you've been?", "Name a hobby.", "Name a planet.",]
 
 //save watched movies var
 var watched = [];
@@ -115,13 +115,11 @@ var displayVideos = function(youtubeID, vidtitle) {
     vidTitleEl.textContent = vidtitle;
     videoCard.appendChild(vidTitleEl);
 
-    var addLink = document.createElement("iframe");
-    addLink.src = "https://www.youtube.com/embed/" + youtubeID 
+    var addLink = document.createElement("div");
+    addLink.innerHTML = "<iframe src='https://www.youtube.com/embed/" + youtubeID + "'" + ' title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     videoCard.appendChild(addLink)
 
     youtubeEL.appendChild(videoCard)
-
-
 }
 
 // Event Listeners for Youtube
