@@ -14,6 +14,8 @@ var searchYoutubeBtn = document.querySelector("#search-youtube");
 var runYoutubeSearch = document.querySelector("#run-youtube-search")
 var inputOne = document.querySelector("#input-1")
 
+//save watched movies var
+var watched = {};
 
 // functions for Movie Search
 var movieAPI = function (genre) {
@@ -49,6 +51,10 @@ var displayMovies = function (mTitle, mImageURL) {
     movImageEl.src = mImageURL
     movImageEl.classList.add("mov-image-width")
     movieSuggestions.appendChild(movImageEl);
+
+    var watchedEl = document.querySelector("#watchedBtn");
+    watchedEl.style.display= "block";
+    movieSuggestions.appendChild(watchedEl);
 }
 
 // event Listeners for Movie Search
@@ -65,6 +71,15 @@ runGenreSearch.addEventListener('click', function(){
     movieAPI (str);
     resetCheckboxes();
 })
+
+//save watched movies
+$("#watchedBtn").on("click", function () {
+   watched = {
+       title: mTitle,
+       image: mImageURL
+   };
+    localStorage.setItem("watched", JSON.stringify(watched));
+});
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {

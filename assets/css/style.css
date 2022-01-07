@@ -142,3 +142,17 @@ footer{
     text-align: center;
 }
   
+
+#watchedBtn {
+  display: none;
+  text-align: left;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  border-color: black;
+}
+
+#watchedBtn:hover {
+  background: rgba(254, 254, 254, 0.15);
+}
