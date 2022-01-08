@@ -20,6 +20,9 @@ var promptArray = [ "What is your favorite animal?","What is your favorite food?
 //save watched movies var
 var watched = [];
 var x = 0;
+
+//variables for book search
+var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
  
 
 // functions for Movie Search
@@ -147,3 +150,21 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
 })
+
+// search for books
+var searchBooks = function() {
+
+    var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+
+    fetch(bookApiUrl).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(response);
+            })
+        }
+    })
+}
+
+
+//event listeners
+searchBooks();
