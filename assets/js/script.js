@@ -85,8 +85,15 @@ runGenreSearch.addEventListener('click', function(){
 //save watched movies
 var saveMovies = function (e) {
     //add localstorage
-    console.log(e.target.previousElementSibling.previousElementSibling.dataset.mtitle);
-    console.log(e.target.previousElementSibling.src);
+    var movietitle = e.target.previousElementSibling.previousElementSibling.dataset.mtitle;
+    var movieimage = e.target.previousElementSibling.src;
+    watched = {
+        title: movietitle,
+        image: movieimage
+    };
+    localStorage.setItem("watched", JSON.stringify(watched));
+    console.log(movietitle);
+    console.log(movieimage);
 };
 
 // function for YouTube Search
