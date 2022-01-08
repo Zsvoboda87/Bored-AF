@@ -18,7 +18,7 @@ var formEl = document.querySelector("#youtube-form")
 var promptArray = [ "What is your favorite animal?","What is your favorite food?","What is your favorite sport?","Write the first word you can think of.","What is the coolest place you've been?", "Name a hobby.", "Name a planet.",]
 
 //save watched movies var
-var watched = {};
+var watched = [];
 var x = 0;
  
 
