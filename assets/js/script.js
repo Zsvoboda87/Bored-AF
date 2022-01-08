@@ -92,8 +92,6 @@ var saveMovies = function (e) {
         image: movieimage
     };
     localStorage.setItem("watched", JSON.stringify(watched));
-    console.log(movietitle);
-    console.log(movieimage);
 };
 
 // function for YouTube Search
