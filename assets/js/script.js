@@ -165,6 +165,7 @@ var searchBooks = function() {
                 for(i=0; i < 4; i++) {
                     var bTitle = data.results.books[i].title;
                     var bImageUrl = data.results.books[i].book_image;
+                    var bookLink = data.results.books[i].amazon_product_url;
                     displayBooks(bTitle, bImageUrl)
                 }
             
@@ -175,7 +176,7 @@ var searchBooks = function() {
     });
 };
 
-var displayBooks = function(bTitle, bImageUrl) {
+var displayBooks = function(bTitle, bImageUrl,) {
 
     var bookCard = document.createElement("div")
 
@@ -189,7 +190,9 @@ var displayBooks = function(bTitle, bImageUrl) {
     bookCard.appendChild(bookImageEl);
 
     bookSuggestions.appendChild(bookCard);
-}
+};
+
+
 // event listeners
 searchBooksBtn.addEventListener("click", function(){
     searchBooks();
