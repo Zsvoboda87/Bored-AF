@@ -21,8 +21,10 @@ var promptArray = [ "What is your favorite animal?","What is your favorite food?
 var watched = [];
 var x = 0;
 
-//variables for book search
+//variables for NYT book search
 var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
+var searchBooksBtn = document.querySelector("#search-books");
+var bookSuggestions = document.querySelector("#book-suggestion");
  
 
 // functions for Movie Search
@@ -160,11 +162,35 @@ var searchBooks = function() {
         if(response.ok) {
             response.json().then(function(data){
                 console.log(response);
+                for(i=0; i < 4; i++) {
+                    var bTitle = data.results.books[i].title;
+                    var bImageUrl = data.results.books[i].book_image;
+                    displayBooks(bTitle, bImageUrl)
+                }
+            
             })
+        } else {
+            window.alert("selection not valid")
         }
-    })
+    });
+};
+
+var displayBooks = function(bTitle,) {
+
+    var bookCard = document.createElement("div")
+
+    var bookTitleEl = document.createElement("h4");
+    bookTitleEl.textContent = bTitle;
+    bookCard.appendChild(bookTitleEl);
+
+    //var bookImageEl = document.createElement("img");
+    //bookImageEl.src = bImageUrl;
+    //bookImageEl.classList.add("mov-image-width");
+    //bookCard.appendChild(bookImageEl);
+
+    bookSuggestions.appendChild(bookCard);
 }
-
-
-//event listeners
-searchBooks();
+// event listeners
+searchBooksBtn.addEventListener("click", function(){
+    searchBooks();
+});
