@@ -175,7 +175,7 @@ var searchBooks = function() {
     });
 };
 
-var displayBooks = function(bTitle,) {
+var displayBooks = function(bTitle, bImageUrl) {
 
     var bookCard = document.createElement("div")
 
@@ -183,10 +183,10 @@ var displayBooks = function(bTitle,) {
     bookTitleEl.textContent = bTitle;
     bookCard.appendChild(bookTitleEl);
 
-    //var bookImageEl = document.createElement("img");
-    //bookImageEl.src = bImageUrl;
-    //bookImageEl.classList.add("mov-image-width");
-    //bookCard.appendChild(bookImageEl);
+    var bookImageEl = document.createElement("img");
+    bookImageEl.src = bImageUrl;
+    bookImageEl.classList.add("mov-image-width");
+    bookCard.appendChild(bookImageEl);
 
     bookSuggestions.appendChild(bookCard);
 }
