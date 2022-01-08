@@ -19,6 +19,7 @@ var promptArray = [ "What is your favorite animal?","What is your favorite food?
 
 //save watched movies var
 var watched = [];
+var x = 0;
  
 
 // functions for Movie Search
@@ -87,14 +88,15 @@ var saveMovies = function (e) {
     //add localstorage
     var movietitle = e.target.previousElementSibling.previousElementSibling.dataset.mtitle;
     var movieimage = e.target.previousElementSibling.src;
-    watched = {
+ 
+    watched[x] = {
         title: movietitle,
         image: movieimage
     };
     localStorage.setItem("watched", JSON.stringify(watched));
-    console.log(movietitle);
-    console.log(movieimage);
+    x++;
 };
+
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {
