@@ -1,4 +1,7 @@
 $(document).foundation();
+//universal variables
+var homeBtn = document.querySelector("#home");
+
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
 var runGenreSearch= document.querySelector("#search-genre");
@@ -82,6 +85,10 @@ var displayMovies = function (mTitle, mImageURL) {
 // event Listeners for Movie Search
 searchMoviesBtn.addEventListener("click", function(){
     modalBg.classList.add("bg-active")
+    searchMoviesBtn.classList.add("is-active")
+    homeBtn.classList.remove("is-active");
+    
+
 })
 
 runGenreSearch.addEventListener('click', function(){
@@ -145,6 +152,9 @@ var displayVideos = function(youtubeID, vidtitle) {
 // Event Listeners for Youtube
 searchYoutubeBtn.addEventListener("click", function() {
     youtubeModalBg.classList.add("bg-active");
+    searchMoviesBtn.classList.remove("is-active");
+    homeBtn.classList.remove("is-active");
+    searchYoutubeBtn.classList.add("is-active");
     promptEl.innerHTML = promptArray[Math.floor(Math.random() * promptArray.length)];
 });
 
@@ -197,6 +207,10 @@ var displayPodcasts = function(pTitle, pImageUrl) {
 
 searchPodcastBtn.addEventListener("click", function() {
     podcastModal.classList.add("bg-active")
+    searchYoutubeBtn.classList.remove("is-active");
+    searchMoviesBtn.classList.remove("is-active");
+    homeBtn.classList.remove("is-active");
+    searchPodcastBtn.classList.add("is-active");
 });
 
 runPodcastSearch.addEventListener("click", function(){
