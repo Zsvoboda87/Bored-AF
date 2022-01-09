@@ -25,6 +25,10 @@ var x = 0;
 var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
 var searchBooksBtn = document.querySelector("#search-books");
 var bookSuggestions = document.querySelector("#book-suggestion");
+
+//variables for podcast search
+var podcastBtn = document.querySelector("#search-podcasts");
+var podcastSuggestions = document.querySelector("#podcast-suggestion");
  
 
 // functions for Movie Search
@@ -176,7 +180,7 @@ var searchBooks = function() {
     });
 };
 
-var displayBooks = function(bTitle, bImageUrl,) {
+var displayBooks = function(bTitle, bImageUrl) {
 
     var bookCard = document.createElement("div")
 
@@ -218,5 +222,21 @@ var podcastSearch = function () {
         }
     });
 };
+
+var displayPodcasts = function(pTitle, pImageUrl) {
+    
+    var podcastCard = document.createElement("div")
+
+    var podcastTitleEl = document.createElement("h4");
+    podcastTitleEl.textContent = pTitle;
+    podcastCard.appendChild(podcastTitleEl);
+
+    var podcastImageEl = document.createElement("img");
+    podcastImageEl.src = pImageUrl;
+    podcastImageEl.classList.add("mov-image-width");
+    podcastCard.appendChild(podcastImageEl);
+
+    podcastSuggestions.appendChild(podcastCard);
+}
 
 podcastSearch();
