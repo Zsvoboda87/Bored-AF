@@ -29,6 +29,7 @@ var bookSuggestions = document.querySelector("#book-suggestion");
 //variables for podcast search
 var searchPodcastBtn = document.querySelector("#search-podcasts");
 var podcastSuggestions = document.querySelector("#podcast-suggestion");
+var podcastModal = document.querySelector("#podcast-modal");
  
 
 // functions for Movie Search
@@ -124,7 +125,6 @@ var youtubeAPI = function (keyword) {
     });
 };
 
-
 var displayVideos = function(youtubeID, vidtitle) {
     var videoCard = document.createElement("div")
     videoCard.classList.add("video-card")
@@ -157,6 +157,50 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeModalBg.classList.remove("bg-active");
 })
 
+var podcastSearch = function () {
+    
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=crime";
+
+    fetch (podcastApi).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(data);
+                for (i=0; i <4; i++) {
+                    var pTitle = data.results[i].collectionCensoredName;
+                    var pImageUrl = data.results[i].artworkUrl100;
+                    displayPodcasts(pTitle, pImageUrl);
+                }
+            })
+        } else {
+            window.alert("Selection not valid");
+        }
+    });
+};
+
+var displayPodcasts = function(pTitle, pImageUrl) {
+    
+    var podcastCard = document.createElement("div")
+
+    var podcastTitleEl = document.createElement("h4");
+    podcastTitleEl.textContent = pTitle;
+    podcastCard.appendChild(podcastTitleEl);
+
+    var podcastImageEl = document.createElement("img");
+    podcastImageEl.src = pImageUrl;
+    podcastImageEl.classList.add("mov-image-width");
+    podcastCard.appendChild(podcastImageEl);
+
+    podcastSuggestions.appendChild(podcastCard);
+}
+
+searchPodcastBtn.addEventListener("click", function() {
+    console.log("clicked");
+    podcastModal.classList.add("bg-active")
+});
+
+
+
+/// extra in case we want it?
 // search for books
 // var searchBooks = function() {
 
@@ -201,45 +245,3 @@ runYoutubeSearch.addEventListener("click", function(){
 // searchBooksBtn.addEventListener("click", function(){
 //     searchBooks();
 // });
-
-
-var podcastSearch = function () {
-    
-    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=crime";
-
-    fetch (podcastApi).then(function(response){
-        if(response.ok) {
-            response.json().then(function(data){
-                console.log(data);
-                for (i=0; i <4; i++) {
-                    var pTitle = data.results[i].collectionCensoredName;
-                    var pImageUrl = data.results[i].artworkUrl100;
-                    displayPodcasts(pTitle, pImageUrl);
-                }
-            })
-        } else {
-            window.alert("Selection not valid");
-        }
-    });
-};
-
-var displayPodcasts = function(pTitle, pImageUrl) {
-    
-    var podcastCard = document.createElement("div")
-
-    var podcastTitleEl = document.createElement("h4");
-    podcastTitleEl.textContent = pTitle;
-    podcastCard.appendChild(podcastTitleEl);
-
-    var podcastImageEl = document.createElement("img");
-    podcastImageEl.src = pImageUrl;
-    podcastImageEl.classList.add("mov-image-width");
-    podcastCard.appendChild(podcastImageEl);
-
-    podcastSuggestions.appendChild(podcastCard);
-}
-
-searchPodcastBtn.addEventListener("click", function() {
-    podcastSearch();
-});
-
