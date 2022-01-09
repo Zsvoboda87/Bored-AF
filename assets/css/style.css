@@ -15,6 +15,12 @@ body{
     font-family: Montserrat, Arial, sans-serif;
 }
 
+h4 {
+  color: var(--tertiary-color);
+  font-weight: bold;
+  text-align: center;
+}
+
 .subnav-hero-section {
     text-align: center;
     background: var(--primary-color);
@@ -122,6 +128,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-bottom: 20px;
 }
 
 .mov-image-width {
@@ -155,10 +162,16 @@ footer{
   
 .watchedbtn {
   display: block;
-  background-color: var(--accent-color);
-  border-color: black;
+  background-color: var(--secondary-color);
+  width: 50%;
+  color: white;
   border: 1px solid;
   border-radius: 15px;
-  padding: 3px;
-  margin: 5px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.watchedbtn:hover{
+  background-color: var(--tertiary-color);
 }
