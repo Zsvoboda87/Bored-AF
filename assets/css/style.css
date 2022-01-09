@@ -14,6 +14,13 @@
 body{
     font-family: Montserrat, Arial, sans-serif;
 }
+h1{
+  font-family: din-condensed, sans-serif;
+  font-weight: 400;
+  font-size: 100px;
+  font-style: normal;
+  color:white;
+}
 
 h4 {
   color: var(--tertiary-color);
