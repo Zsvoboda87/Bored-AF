@@ -197,3 +197,26 @@ var displayBooks = function(bTitle, bImageUrl,) {
 searchBooksBtn.addEventListener("click", function(){
     searchBooks();
 });
+
+
+var podcastSearch = function () {
+    
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=crime";
+
+    fetch (podcastApi).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(data);
+                for (i=0; i <4; i++) {
+                    var pTitle = data.results[i].collectionCensoredName;
+                    var pImageUrl = data.results[i].artworkUrl100;
+                    displayPodcasts(pTitle, pImageUrl);
+                }
+            })
+        } else {
+            window.alert("Selection not valid");
+        }
+    });
+};
+
+podcastSearch();
