@@ -30,6 +30,7 @@ var bookSuggestions = document.querySelector("#book-suggestion");
 var searchPodcastBtn = document.querySelector("#search-podcasts");
 var podcastSuggestions = document.querySelector("#podcast-suggestion");
 var podcastModal = document.querySelector("#podcast-modal");
+var runPodcastSearch = document.querySelector("#search-podcast");
  
 
 // functions for Movie Search
@@ -157,9 +158,9 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeModalBg.classList.remove("bg-active");
 })
 
-var podcastSearch = function () {
+var podcastSearch = function(term) {
     
-    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=crime";
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + term;
 
     fetch (podcastApi).then(function(response){
         if(response.ok) {
@@ -194,9 +195,20 @@ var displayPodcasts = function(pTitle, pImageUrl) {
 }
 
 searchPodcastBtn.addEventListener("click", function() {
-    console.log("clicked");
     podcastModal.classList.add("bg-active")
 });
+
+runPodcastSearch.addEventListener("click", function(){
+    console.log("clicked");
+    podcastModal.classList.remove("bg-active");
+    for (i =0; i <checkboxes.length; i++) {
+        if (checkboxes[i].checked === true) {
+            str += checkboxes[i].value + ","
+        }
+    };
+    podcastSearch (str);
+    resetCheckboxes();
+})
 
 
 
