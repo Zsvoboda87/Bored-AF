@@ -158,14 +158,14 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeModalBg.classList.remove("bg-active");
 })
 
-var podcastSearch = function(term) {
+var podcastSearch = function(genre) {
     
-    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + term;
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + genre;
 
     fetch (podcastApi).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
-                console.log(data);
+                console.log(response);
                 for (i=0; i <4; i++) {
                     var pTitle = data.results[i].collectionCensoredName;
                     var pImageUrl = data.results[i].artworkUrl100;
