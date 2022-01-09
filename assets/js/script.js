@@ -20,6 +20,15 @@ var promptArray = [ "What is your favorite animal?","What is your favorite food?
 //save watched movies var
 var watched = [];
 var x = 0;
+
+//variables for NYT book search
+var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
+var searchBooksBtn = document.querySelector("#search-books");
+var bookSuggestions = document.querySelector("#book-suggestion");
+
+//variables for podcast search
+var searchPodcastBtn = document.querySelector("#search-podcasts");
+var podcastSuggestions = document.querySelector("#podcast-suggestion");
  
 
 // functions for Movie Search
@@ -147,3 +156,90 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
 })
+
+// search for books
+var searchBooks = function() {
+
+    var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+
+    fetch(bookApiUrl).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(response);
+                for(i=0; i < 4; i++) {
+                    var bTitle = data.results.books[i].title;
+                    var bImageUrl = data.results.books[i].book_image;
+                    var bookLink = data.results.books[i].amazon_product_url;
+                    displayBooks(bTitle, bImageUrl)
+                }
+            
+            })
+        } else {
+            window.alert("selection not valid")
+        }
+    });
+};
+
+var displayBooks = function(bTitle, bImageUrl) {
+
+    var bookCard = document.createElement("div")
+
+    var bookTitleEl = document.createElement("h4");
+    bookTitleEl.textContent = bTitle;
+    bookCard.appendChild(bookTitleEl);
+
+    var bookImageEl = document.createElement("img");
+    bookImageEl.src = bImageUrl;
+    bookImageEl.classList.add("mov-image-width");
+    bookCard.appendChild(bookImageEl);
+
+    bookSuggestions.appendChild(bookCard);
+};
+
+
+// event listeners
+searchBooksBtn.addEventListener("click", function(){
+    searchBooks();
+});
+
+
+var podcastSearch = function () {
+    
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=crime";
+
+    fetch (podcastApi).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(data);
+                for (i=0; i <4; i++) {
+                    var pTitle = data.results[i].collectionCensoredName;
+                    var pImageUrl = data.results[i].artworkUrl100;
+                    displayPodcasts(pTitle, pImageUrl);
+                }
+            })
+        } else {
+            window.alert("Selection not valid");
+        }
+    });
+};
+
+var displayPodcasts = function(pTitle, pImageUrl) {
+    
+    var podcastCard = document.createElement("div")
+
+    var podcastTitleEl = document.createElement("h4");
+    podcastTitleEl.textContent = pTitle;
+    podcastCard.appendChild(podcastTitleEl);
+
+    var podcastImageEl = document.createElement("img");
+    podcastImageEl.src = pImageUrl;
+    podcastImageEl.classList.add("mov-image-width");
+    podcastCard.appendChild(podcastImageEl);
+
+    podcastSuggestions.appendChild(podcastCard);
+}
+
+searchPodcastBtn.addEventListener("click", function() {
+    podcastSearch();
+});
+

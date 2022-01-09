@@ -17,6 +17,8 @@
         <ul class="subnav-hero-subnav">
           <li><a id="search-movies" href="#">Search Movies</a></li>
           <li><a id="search-youtube" href="#" class="is-active">Search Youtube</a></li>
+          <li><a id ="search-books" href="#">Search Books</a></li>
+          <li><a id="search-podcasts" href="#">Search Podcasts</a></li>
           <li><a href="./watched.html">Watched Movies</a></li>
         </ul>
     </header>
@@ -33,6 +35,10 @@
     </div>
 
     <div class="flex-evenly" id="youtube-suggestion"></div>
+
+    <div class="flex-evenly" id="book-suggestion"></div>
+
+    <div class="flex-evenly" id="podcast-suggestion"></div>
 
 
 <!-- This is a Modal to select Genres after a button is clicked on.   -->
@@ -77,7 +83,7 @@
                     <label><input class="checkbox" type="checkbox" value="western">Western</label>
                 </div>               
             </div>
-            <button id="search-genre">Search</button>
+            <button id="search-genre" class="search-button">Search</button>
         </div>
     </div>
 
@@ -87,7 +93,7 @@
             <form id="youtube-form">
                 <h2 id="prompt">FUN PROMPT HERE:</h2>
                 <input id="input-1" type="text" placeholder="Enter a Keyword">
-                <button id="run-youtube-search">Search</button>
+                <button id="run-youtube-search" class="search-button">Search</button>
             </form>
         </div>
     </div>
@@ -100,6 +106,7 @@
       </div>
     </footer>
 
+    <script src="https://kit.fontawesome.com/67af1d78ee.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
     <script src="assets/js/script.js"></script>
