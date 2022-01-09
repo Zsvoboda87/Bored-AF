@@ -7,17 +7,18 @@
     <link rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/djv6qrz.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>BoredAF</title>
     
 </head>
 <body>
     <header class="subnav-hero-section">
-        <img src="./assets/images/BoredAf.png" alt="">
+        <h1>BORED<span style="color:#90AA86">AF</span></h1>
         <ul class="subnav-hero-subnav">
+          <li><a id="home" href="#./index.html" class="is-active">Home</a></li>
           <li><a id="search-movies" href="#">Search Movies</a></li>
-          <li><a id="search-youtube" href="#" class="is-active">Search Youtube</a></li>
-          <li><a id ="search-books" href="#">Search Books</a></li>
+          <li><a id="search-youtube" href="#">Search Youtube</a></li>
           <li><a id="search-podcasts" href="#">Search Podcasts</a></li>
           <li><a href="./watched.html">Watched Movies</a></li>
         </ul>
@@ -26,7 +27,7 @@
     <main>
       <div class="row medium-8 large-7 columns">
         <div class="intro">
-          <p>Bored AF was designed to provide entertainment to users who are bored AF. Users are able to search movies and youtube videos based on genres and keywords to generate suggested watch lists. Designate which movies you’ve already seen so that you don’t get the same movie suggested to you after you’ve already watched it. Happy viewing!</p>
+          <p>Bored AF was designed to provide entertainment to users who are bored AF. Users are able to search movies, youtube videos, podcasts, and music based on genres and keywords to generate suggested watch lists. Designate which movies you’ve already seen so that you don’t get the same movie suggested to you after you’ve already watched it. Happy viewing!</p>
         </div>
       </div>
     </main>
@@ -36,12 +37,10 @@
 
     <div class="flex-evenly" id="youtube-suggestion"></div>
 
-    <div class="flex-evenly" id="book-suggestion"></div>
-
     <div class="flex-evenly" id="podcast-suggestion"></div>
 
 
-<!-- This is a Modal to select Genres after a button is clicked on.   -->
+<!-- This is a Modal to select Movie Genres after a button is clicked on.   -->
     <div class="modal-bg">
         <div class="modal">
             <h2>Genre</h2>
@@ -98,6 +97,46 @@
         </div>
     </div>
 
+     <!-- This is a modal for Podcast Search Search -->
+
+    <div class="modal-bg" id="podcast-modal">
+        <div class="modal">
+            <h2>Genre</h2>
+            <div class="genre-display checkbox-row">
+                <div class="checkbox-column">
+                    <label><input class="checkbox" type="checkbox" value="art">Art</label>
+                    <label><input class="checkbox" type="checkbox" value="business">Business</label>
+                    <label><input class="checkbox" type="checkbox" value="comedy">Comedy</label>
+                    <label><input class="checkbox" type="checkbox" value="crime">Crime</label>
+                </div>
+                <div class="checkbox-column">
+                    <label><input class="checkbox" type="checkbox" value="culture">Culture</label>
+                    <label><input class="checkbox" type="checkbox" value="drama">Drama</label>
+                    <label><input class="checkbox" type="checkbox" value="economics">Economics</label>
+                    <label><input class="checkbox" type="checkbox" value="education">Education</label>
+                </div>
+                <div class="checkbox-column">
+                    <label><input class="checkbox" type="checkbox" value="fitness">Fitness</label>
+                    <label><input class="checkbox" type="checkbox" value="health">Health</label>
+                    <label><input class="checkbox" type="checkbox" value="history">History</label>
+                    <label><input class="checkbox" type="checkbox" value="music">Music</label>
+                </div>
+                <div class="checkbox-column">
+                    <label><input class="checkbox" type="checkbox" value="movies">Movies</label>
+                    <label><input class="checkbox" type="checkbox" value="news">News</label>
+                    <label><input class="checkbox" type="checkbox" value="politics">Politics</label>
+                    <label><input class="checkbox" type="checkbox" value="religion">Religion</label>
+                </div>   
+                <div class="checkbox-column">
+                    <label><input class="checkbox" type="checkbox" value="science">Science</label>
+                    <label><input class="checkbox" type="checkbox" value="sports">Sports</label>
+                    <label><input class="checkbox" type="checkbox" value="talkshow">Talk-show</label>
+                    <label><input class="checkbox" type="checkbox" value="technology">Technology</label>
+                </div>             
+            </div>
+            <button id="search-podcast" class="search-button">Search</button>
+        </div>
+    </div>
     
     
     <footer>

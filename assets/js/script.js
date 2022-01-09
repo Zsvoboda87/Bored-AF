@@ -1,4 +1,7 @@
 $(document).foundation();
+//universal variables
+var homeBtn = document.querySelector("#home");
+
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
 var runGenreSearch= document.querySelector("#search-genre");
@@ -29,6 +32,8 @@ var bookSuggestions = document.querySelector("#book-suggestion");
 //variables for podcast search
 var searchPodcastBtn = document.querySelector("#search-podcasts");
 var podcastSuggestions = document.querySelector("#podcast-suggestion");
+var podcastModal = document.querySelector("#podcast-modal");
+var runPodcastSearch = document.querySelector("#search-podcast");
  
 
 // functions for Movie Search
@@ -80,7 +85,12 @@ var displayMovies = function (mTitle, mImageURL) {
 // event Listeners for Movie Search
 searchMoviesBtn.addEventListener("click", function(){
     modalBg.classList.add("bg-active")
+    searchMoviesBtn.classList.add("is-active")
+    homeBtn.classList.remove("is-active");
+    
+
 })
+
 runGenreSearch.addEventListener('click', function(){
     modalBg.classList.remove("bg-active");
     for ( i = 0; i < checkboxes.length; i++)  {
@@ -124,7 +134,6 @@ var youtubeAPI = function (keyword) {
     });
 };
 
-
 var displayVideos = function(youtubeID, vidtitle) {
     var videoCard = document.createElement("div")
     videoCard.classList.add("video-card")
@@ -143,6 +152,9 @@ var displayVideos = function(youtubeID, vidtitle) {
 // Event Listeners for Youtube
 searchYoutubeBtn.addEventListener("click", function() {
     youtubeModalBg.classList.add("bg-active");
+    searchMoviesBtn.classList.remove("is-active");
+    homeBtn.classList.remove("is-active");
+    searchYoutubeBtn.classList.add("is-active");
     promptEl.innerHTML = promptArray[Math.floor(Math.random() * promptArray.length)];
 });
 
@@ -157,60 +169,14 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeModalBg.classList.remove("bg-active");
 })
 
-// search for books
-var searchBooks = function() {
-
-    var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
-
-    fetch(bookApiUrl).then(function(response){
-        if(response.ok) {
-            response.json().then(function(data){
-                console.log(response);
-                for(i=0; i < 4; i++) {
-                    var bTitle = data.results.books[i].title;
-                    var bImageUrl = data.results.books[i].book_image;
-                    var bookLink = data.results.books[i].amazon_product_url;
-                    displayBooks(bTitle, bImageUrl)
-                }
-            
-            })
-        } else {
-            window.alert("selection not valid")
-        }
-    });
-};
-
-var displayBooks = function(bTitle, bImageUrl) {
-
-    var bookCard = document.createElement("div")
-
-    var bookTitleEl = document.createElement("h4");
-    bookTitleEl.textContent = bTitle;
-    bookCard.appendChild(bookTitleEl);
-
-    var bookImageEl = document.createElement("img");
-    bookImageEl.src = bImageUrl;
-    bookImageEl.classList.add("mov-image-width");
-    bookCard.appendChild(bookImageEl);
-
-    bookSuggestions.appendChild(bookCard);
-};
-
-
-// event listeners
-searchBooksBtn.addEventListener("click", function(){
-    searchBooks();
-});
-
-
-var podcastSearch = function () {
+var podcastSearch = function(genre) {
     
-    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=crime";
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + genre;
 
     fetch (podcastApi).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
-                console.log(data);
+                console.log(response);
                 for (i=0; i <4; i++) {
                     var pTitle = data.results[i].collectionCensoredName;
                     var pImageUrl = data.results[i].artworkUrl100;
@@ -240,6 +206,69 @@ var displayPodcasts = function(pTitle, pImageUrl) {
 }
 
 searchPodcastBtn.addEventListener("click", function() {
-    podcastSearch();
+    podcastModal.classList.add("bg-active")
+    searchYoutubeBtn.classList.remove("is-active");
+    searchMoviesBtn.classList.remove("is-active");
+    homeBtn.classList.remove("is-active");
+    searchPodcastBtn.classList.add("is-active");
 });
 
+runPodcastSearch.addEventListener("click", function(){
+    console.log("clicked");
+    podcastModal.classList.remove("bg-active");
+    for (i =0; i <checkboxes.length; i++) {
+        if (checkboxes[i].checked === true) {
+            str += checkboxes[i].value + ","
+        }
+    };
+    podcastSearch (str);
+    resetCheckboxes();
+})
+
+
+
+/// extra in case we want it?
+// search for books
+// var searchBooks = function() {
+
+//     var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+
+//     fetch(bookApiUrl).then(function(response){
+//         if(response.ok) {
+//             response.json().then(function(data){
+//                 console.log(response);
+//                 for(i=0; i < 4; i++) {
+//                     var bTitle = data.results.books[i].title;
+//                     var bImageUrl = data.results.books[i].book_image;
+//                     var bookLink = data.results.books[i].amazon_product_url;
+//                     displayBooks(bTitle, bImageUrl)
+//                 }
+            
+//             })
+//         } else {
+//             window.alert("selection not valid")
+//         }
+//     });
+// };
+
+// var displayBooks = function(bTitle, bImageUrl) {
+
+//     var bookCard = document.createElement("div")
+
+//     var bookTitleEl = document.createElement("h4");
+//     bookTitleEl.textContent = bTitle;
+//     bookCard.appendChild(bookTitleEl);
+
+//     var bookImageEl = document.createElement("img");
+//     bookImageEl.src = bImageUrl;
+//     bookImageEl.classList.add("mov-image-width");
+//     bookCard.appendChild(bookImageEl);
+
+//     bookSuggestions.appendChild(bookCard);
+// };
+
+
+// // event listeners
+// searchBooksBtn.addEventListener("click", function(){
+//     searchBooks();
+// });
