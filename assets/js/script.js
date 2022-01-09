@@ -83,6 +83,7 @@ var displayMovies = function (mTitle, mImageURL) {
 searchMoviesBtn.addEventListener("click", function(){
     modalBg.classList.add("bg-active")
 })
+
 runGenreSearch.addEventListener('click', function(){
     modalBg.classList.remove("bg-active");
     for ( i = 0; i < checkboxes.length; i++)  {
