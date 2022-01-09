@@ -158,49 +158,49 @@ runYoutubeSearch.addEventListener("click", function(){
 })
 
 // search for books
-var searchBooks = function() {
+// var searchBooks = function() {
 
-    var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+//     var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
 
-    fetch(bookApiUrl).then(function(response){
-        if(response.ok) {
-            response.json().then(function(data){
-                console.log(response);
-                for(i=0; i < 4; i++) {
-                    var bTitle = data.results.books[i].title;
-                    var bImageUrl = data.results.books[i].book_image;
-                    var bookLink = data.results.books[i].amazon_product_url;
-                    displayBooks(bTitle, bImageUrl)
-                }
+//     fetch(bookApiUrl).then(function(response){
+//         if(response.ok) {
+//             response.json().then(function(data){
+//                 console.log(response);
+//                 for(i=0; i < 4; i++) {
+//                     var bTitle = data.results.books[i].title;
+//                     var bImageUrl = data.results.books[i].book_image;
+//                     var bookLink = data.results.books[i].amazon_product_url;
+//                     displayBooks(bTitle, bImageUrl)
+//                 }
             
-            })
-        } else {
-            window.alert("selection not valid")
-        }
-    });
-};
+//             })
+//         } else {
+//             window.alert("selection not valid")
+//         }
+//     });
+// };
 
-var displayBooks = function(bTitle, bImageUrl) {
+// var displayBooks = function(bTitle, bImageUrl) {
 
-    var bookCard = document.createElement("div")
+//     var bookCard = document.createElement("div")
 
-    var bookTitleEl = document.createElement("h4");
-    bookTitleEl.textContent = bTitle;
-    bookCard.appendChild(bookTitleEl);
+//     var bookTitleEl = document.createElement("h4");
+//     bookTitleEl.textContent = bTitle;
+//     bookCard.appendChild(bookTitleEl);
 
-    var bookImageEl = document.createElement("img");
-    bookImageEl.src = bImageUrl;
-    bookImageEl.classList.add("mov-image-width");
-    bookCard.appendChild(bookImageEl);
+//     var bookImageEl = document.createElement("img");
+//     bookImageEl.src = bImageUrl;
+//     bookImageEl.classList.add("mov-image-width");
+//     bookCard.appendChild(bookImageEl);
 
-    bookSuggestions.appendChild(bookCard);
-};
+//     bookSuggestions.appendChild(bookCard);
+// };
 
 
-// event listeners
-searchBooksBtn.addEventListener("click", function(){
-    searchBooks();
-});
+// // event listeners
+// searchBooksBtn.addEventListener("click", function(){
+//     searchBooks();
+// });
 
 
 var podcastSearch = function () {
