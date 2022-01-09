@@ -27,7 +27,7 @@ var searchBooksBtn = document.querySelector("#search-books");
 var bookSuggestions = document.querySelector("#book-suggestion");
 
 //variables for podcast search
-var podcastBtn = document.querySelector("#search-podcasts");
+var searchPodcastBtn = document.querySelector("#search-podcasts");
 var podcastSuggestions = document.querySelector("#podcast-suggestion");
  
 
@@ -239,4 +239,7 @@ var displayPodcasts = function(pTitle, pImageUrl) {
     podcastSuggestions.appendChild(podcastCard);
 }
 
-podcastSearch();
+searchPodcastBtn.addEventListener("click", function() {
+    podcastSearch();
+});
+
