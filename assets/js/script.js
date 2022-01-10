@@ -25,9 +25,8 @@ var watched = [];
 var x = 0;
 
 //variables for NYT book search
-var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
-var searchBooksBtn = document.querySelector("#search-books");
-var bookSuggestions = document.querySelector("#book-suggestion");
+var searchNewsBtn = document.querySelector("#search-news");
+var newsSuggestions = document.querySelector("#news-suggestion");
 
 //variables for podcast search
 var searchPodcastBtn = document.querySelector("#search-podcasts");
@@ -251,13 +250,10 @@ var searchNews = function() {
     fetch(newsApiUrl).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
-                console.log(data);
                 var newsTitle = data.results[0].title;
-                console.log(newsTitle);
                 var newsURL = data.results[0].url;
-                console.log(newsURL);
-                var newsImage = data.results[0].media[0].media-metadata[2].url;
-                console.log(newsImage);
+                // var newsImage = data.results[0].media[0].media-metadata[2].url;
+                displayNews(newsTitle,newsURL);
                 
             })
         } else {
@@ -265,26 +261,32 @@ var searchNews = function() {
         }
     });
 };
-searchNews();
-// var displayBooks = function(bTitle, bImageUrl) {
 
-//     var bookCard = document.createElement("div")
+var displayNews = function(nTitle, nImageUrl) {
 
-//     var bookTitleEl = document.createElement("h4");
-//     bookTitleEl.textContent = bTitle;
-//     bookCard.appendChild(bookTitleEl);
+    var newsCard = document.createElement("div")
+    newsCard.classList.add("news-card");
 
-//     var bookImageEl = document.createElement("img");
-//     bookImageEl.src = bImageUrl;
-//     bookImageEl.classList.add("mov-image-width");
-//     bookCard.appendChild(bookImageEl);
+    var newsTitleEl = document.createElement("h4");
+    newsTitleEl.textContent = nTitle;
+    newsCard.appendChild(newsTitleEl);
 
-//     bookSuggestions.appendChild(bookCard);
-// };
+    var newsURLEl = document.createElement("a");
+    newsURLEl.textContent = "Read This Article Here";
+    newsURLEl.href = nImageUrl;
+    newsCard.appendChild(newsURLEl);
+
+    //var newsImageEl = document.createElement("img");
+    // newsImageEl.src = nImageUrl;
+    // newsImageEl.classList.add("mov-image-width");
+    // newsCard.appendChild(newsImageEl);
+
+    movieSuggestions.appendChild(newsCard);
+};
 
 
-// // event listeners
-// searchBooksBtn.addEventListener("click", function(){
-//     searchBooks();
-// });
+// event listeners
+searchNewsBtn.addEventListener("click", function(){
+    searchNews();
+});
 
