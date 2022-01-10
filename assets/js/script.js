@@ -38,13 +38,14 @@ var runPodcastSearch = document.querySelector("#search-podcast");
 
 // functions for Movie Search
 var movieAPI = function (genre) {
-    var apiUrl = "https://imdb-api.com/API/AdvancedSearch/k_0m8x9src/?genres=" + genre + "&count=10"
+    var apiUrl = "https://imdb-api.com/API/AdvancedSearch/k_0m8x9src/?genres=" + genre + "&count=50"
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 for(i=0; i < 4; i++) {
-                var mTitle = data.results[i].title;
-                var mImageURL = data.results[i].image
+                var r = (Math.floor(Math.random() * 50));
+                var mTitle = data.results[r].title;
+                var mImageURL = data.results[r].image
                 displayMovies(mTitle, mImageURL)
             }
         
@@ -63,6 +64,8 @@ var resetCheckboxes = function() {
 
 var displayMovies = function (mTitle, mImageURL) {
     var movieCard = document.createElement("div")
+    movieCard.classList.add("mov-image-width")
+    movieCard.classList.add("movie-card")
 
     var movTitleEl = document.createElement("h4");
     movTitleEl.setAttribute("data-mTitle", mTitle)
@@ -71,7 +74,6 @@ var displayMovies = function (mTitle, mImageURL) {
 
     var movImageEl = document.createElement("img");
     movImageEl.src = mImageURL
-    movImageEl.classList.add("mov-image-width")
     movieCard.appendChild(movImageEl);
 
     var watchedEl = document.createElement("button");

@@ -117,8 +117,9 @@ h4 {
 }
 
 .checkbox-row {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .checkbox-column {
@@ -198,4 +199,72 @@ footer{
 
 .watchedbtn:hover{
   background-color: var(--tertiary-color);
+}
+
+
+/* Checkbox modals on medium to small screens */
+@media screen and (max-width:1170px) {
+  .video-card {
+    width: 95%
+
+  }
+}
+
+/* Checkbox modals on medium to small screens */
+@media screen and (max-width:900px) {
+
+  .modal {
+    height: 60vh;
+  }
+
+  .watchedbtn {
+    width:75%
+  }
+
+  .checkbox-row {
+    flex-direction: column;
+  }
+  
+  .checkbox-column {
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px dotted black;
+  }
+}
+  
+  
+@media screen and (max-width:600px) {
+  .modal {
+    width: 100vw
+  }
+
+  .watchedbtn {
+    width:100%
+  }
+
+  .movie-card {
+    width: 45vw;
+  }
+}
+  
+  
+@media screen and (max-width:400px) { 
+  .subnav-hero-section {
+   display: block;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+  }
+
+  .watchedbtn {
+    font-size: 12px;
+  }
+}
+
+
+@media screen and (max-height:600px) {
+  .modal {
+   height: 85vh;
+  }
 }
