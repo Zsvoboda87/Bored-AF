@@ -25,9 +25,8 @@ var watched = [];
 var x = 0;
 
 //variables for NYT book search
-var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
-var searchBooksBtn = document.querySelector("#search-books");
-var bookSuggestions = document.querySelector("#book-suggestion");
+var searchNewsBtn = document.querySelector("#search-news");
+var newsSuggestions = document.querySelector("#news-suggestion");
 
 //variables for podcast search
 var searchPodcastBtn = document.querySelector("#search-podcasts");
@@ -242,48 +241,53 @@ runPodcastSearch.addEventListener("click", function(){
 
 homeBtn.addEventListener("click", clearDisplay);
 
-/// extra in case we want it?
-// search for books
-// var searchBooks = function() {
+// extra in case we want it?//
 
-//     var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+var searchNews = function() {
 
-//     fetch(bookApiUrl).then(function(response){
-//         if(response.ok) {
-//             response.json().then(function(data){
-//                 console.log(response);
-//                 for(i=0; i < 4; i++) {
-//                     var bTitle = data.results.books[i].title;
-//                     var bImageUrl = data.results.books[i].book_image;
-//                     var bookLink = data.results.books[i].amazon_product_url;
-//                     displayBooks(bTitle, bImageUrl)
-//                 }
-            
-//             })
-//         } else {
-//             window.alert("selection not valid")
-//         }
-//     });
-// };
+    var newsApiUrl = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=IYDpG9xMMIk6UUTyg8wlaTFT4MCtOg7W";
+ 
+    fetch(newsApiUrl).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+            for(i=0; i<10; i++) {
+                var newsTitle = data.results[i].title;
+                var newsURL = data.results[i].url;
+                // var newsImage = data.results[0].media[0].media-metadata[2].url;
+                displayNews(newsTitle,newsURL);
+            }    
+            })
+        } else {
+            window.alert("selection not valid")
+        }
+    });
+};
 
-// var displayBooks = function(bTitle, bImageUrl) {
+var displayNews = function(nTitle, nImageUrl) {
 
-//     var bookCard = document.createElement("div")
+    var newsCard = document.createElement("div")
+    newsCard.classList.add("news-card");
 
-//     var bookTitleEl = document.createElement("h4");
-//     bookTitleEl.textContent = bTitle;
-//     bookCard.appendChild(bookTitleEl);
+    var newsTitleEl = document.createElement("h4");
+    newsTitleEl.textContent = nTitle;
+    newsCard.appendChild(newsTitleEl);
 
-//     var bookImageEl = document.createElement("img");
-//     bookImageEl.src = bImageUrl;
-//     bookImageEl.classList.add("mov-image-width");
-//     bookCard.appendChild(bookImageEl);
+    var newsURLEl = document.createElement("a");
+    newsURLEl.textContent = "Read This Article Here";
+    newsURLEl.href = nImageUrl;
+    newsCard.appendChild(newsURLEl);
 
-//     bookSuggestions.appendChild(bookCard);
-// };
+    //var newsImageEl = document.createElement("img");
+    // newsImageEl.src = nImageUrl;
+    // newsImageEl.classList.add("mov-image-width");
+    // newsCard.appendChild(newsImageEl);
+
+    movieSuggestions.appendChild(newsCard);
+};
 
 
-// // event listeners
-// searchBooksBtn.addEventListener("click", function(){
-//     searchBooks();
-// });
+// event listeners
+searchNewsBtn.addEventListener("click", function(){
+    searchNews();
+});
+
