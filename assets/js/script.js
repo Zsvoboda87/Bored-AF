@@ -1,4 +1,7 @@
 $(document).foundation();
+//universal variables
+var homeBtn = document.querySelector("#home");
+
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
 var runGenreSearch= document.querySelector("#search-genre");
@@ -19,17 +22,30 @@ var promptArray = [ "What is your favorite animal?","What is your favorite food?
 
 //save watched movies var
 var watched = [];
+var x = 0;
+
+//variables for NYT book search
+var bookKey = "4roUF77MfqCxRV6BEqDoEH1WZfE5H4aH";
+var searchBooksBtn = document.querySelector("#search-books");
+var bookSuggestions = document.querySelector("#book-suggestion");
+
+//variables for podcast search
+var searchPodcastBtn = document.querySelector("#search-podcasts");
+var podcastSuggestions = document.querySelector("#podcast-suggestion");
+var podcastModal = document.querySelector("#podcast-modal");
+var runPodcastSearch = document.querySelector("#search-podcast");
  
 
 // functions for Movie Search
 var movieAPI = function (genre) {
-    var apiUrl = "https://imdb-api.com/API/AdvancedSearch/k_0m8x9src/?genres=" + genre + "&count=10"
+    var apiUrl = "https://imdb-api.com/API/AdvancedSearch/k_0m8x9src/?genres=" + genre + "&count=50"
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 for(i=0; i < 4; i++) {
-                var mTitle = data.results[i].title;
-                var mImageURL = data.results[i].image
+                var r = (Math.floor(Math.random() * 50));
+                var mTitle = data.results[r].title;
+                var mImageURL = data.results[r].image
                 displayMovies(mTitle, mImageURL)
             }
         
@@ -48,6 +64,8 @@ var resetCheckboxes = function() {
 
 var displayMovies = function (mTitle, mImageURL) {
     var movieCard = document.createElement("div")
+    movieCard.classList.add("mov-image-width")
+    movieCard.classList.add("movie-card")
 
     var movTitleEl = document.createElement("h4");
     movTitleEl.setAttribute("data-mTitle", mTitle)
@@ -56,7 +74,6 @@ var displayMovies = function (mTitle, mImageURL) {
 
     var movImageEl = document.createElement("img");
     movImageEl.src = mImageURL
-    movImageEl.classList.add("mov-image-width")
     movieCard.appendChild(movImageEl);
 
     var watchedEl = document.createElement("button");
@@ -70,7 +87,12 @@ var displayMovies = function (mTitle, mImageURL) {
 // event Listeners for Movie Search
 searchMoviesBtn.addEventListener("click", function(){
     modalBg.classList.add("bg-active")
+    searchMoviesBtn.classList.add("is-active")
+    homeBtn.classList.remove("is-active");
+    
+
 })
+
 runGenreSearch.addEventListener('click', function(){
     modalBg.classList.remove("bg-active");
     for ( i = 0; i < checkboxes.length; i++)  {
@@ -85,9 +107,17 @@ runGenreSearch.addEventListener('click', function(){
 //save watched movies
 var saveMovies = function (e) {
     //add localstorage
-    console.log(e.target.previousElementSibling.previousElementSibling.dataset.mtitle);
-    console.log(e.target.previousElementSibling.src);
+    var movietitle = e.target.previousElementSibling.previousElementSibling.dataset.mtitle;
+    var movieimage = e.target.previousElementSibling.src;
+ 
+    watched[x] = {
+        title: movietitle,
+        image: movieimage
+    };
+    localStorage.setItem("watched", JSON.stringify(watched));
+    x++;
 };
+
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {
@@ -105,7 +135,6 @@ var youtubeAPI = function (keyword) {
         }
     });
 };
-
 
 var displayVideos = function(youtubeID, vidtitle) {
     var videoCard = document.createElement("div")
@@ -125,6 +154,9 @@ var displayVideos = function(youtubeID, vidtitle) {
 // Event Listeners for Youtube
 searchYoutubeBtn.addEventListener("click", function() {
     youtubeModalBg.classList.add("bg-active");
+    searchMoviesBtn.classList.remove("is-active");
+    homeBtn.classList.remove("is-active");
+    searchYoutubeBtn.classList.add("is-active");
     promptEl.innerHTML = promptArray[Math.floor(Math.random() * promptArray.length)];
 });
 
@@ -138,3 +170,107 @@ runYoutubeSearch.addEventListener("click", function(){
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
 })
+
+var podcastSearch = function(genre) {
+    
+    var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + genre;
+
+    fetch (podcastApi).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(response);
+                for (i=0; i <4; i++) {
+                    var pTitle = data.results[i].collectionCensoredName;
+                    var pImageUrl = data.results[i].artworkUrl100;
+                    displayPodcasts(pTitle, pImageUrl);
+                }
+            })
+        } else {
+            window.alert("Selection not valid");
+        }
+    });
+};
+
+var displayPodcasts = function(pTitle, pImageUrl) {
+    
+    var podcastCard = document.createElement("div")
+
+    var podcastTitleEl = document.createElement("h4");
+    podcastTitleEl.textContent = pTitle;
+    podcastCard.appendChild(podcastTitleEl);
+
+    var podcastImageEl = document.createElement("img");
+    podcastImageEl.src = pImageUrl;
+    podcastImageEl.classList.add("mov-image-width");
+    podcastCard.appendChild(podcastImageEl);
+
+    podcastSuggestions.appendChild(podcastCard);
+}
+
+searchPodcastBtn.addEventListener("click", function() {
+    podcastModal.classList.add("bg-active")
+    searchYoutubeBtn.classList.remove("is-active");
+    searchMoviesBtn.classList.remove("is-active");
+    homeBtn.classList.remove("is-active");
+    searchPodcastBtn.classList.add("is-active");
+});
+
+runPodcastSearch.addEventListener("click", function(){
+    console.log("clicked");
+    podcastModal.classList.remove("bg-active");
+    for (i =0; i <checkboxes.length; i++) {
+        if (checkboxes[i].checked === true) {
+            str += checkboxes[i].value + ","
+        }
+    };
+    podcastSearch (str);
+    resetCheckboxes();
+})
+
+
+
+/// extra in case we want it?
+// search for books
+// var searchBooks = function() {
+
+//     var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+
+//     fetch(bookApiUrl).then(function(response){
+//         if(response.ok) {
+//             response.json().then(function(data){
+//                 console.log(response);
+//                 for(i=0; i < 4; i++) {
+//                     var bTitle = data.results.books[i].title;
+//                     var bImageUrl = data.results.books[i].book_image;
+//                     var bookLink = data.results.books[i].amazon_product_url;
+//                     displayBooks(bTitle, bImageUrl)
+//                 }
+            
+//             })
+//         } else {
+//             window.alert("selection not valid")
+//         }
+//     });
+// };
+
+// var displayBooks = function(bTitle, bImageUrl) {
+
+//     var bookCard = document.createElement("div")
+
+//     var bookTitleEl = document.createElement("h4");
+//     bookTitleEl.textContent = bTitle;
+//     bookCard.appendChild(bookTitleEl);
+
+//     var bookImageEl = document.createElement("img");
+//     bookImageEl.src = bImageUrl;
+//     bookImageEl.classList.add("mov-image-width");
+//     bookCard.appendChild(bookImageEl);
+
+//     bookSuggestions.appendChild(bookCard);
+// };
+
+
+// // event listeners
+// searchBooksBtn.addEventListener("click", function(){
+//     searchBooks();
+// });

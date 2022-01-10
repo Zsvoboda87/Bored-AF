@@ -14,6 +14,19 @@
 body{
     font-family: Montserrat, Arial, sans-serif;
 }
+h1{
+  font-family: din-condensed, sans-serif;
+  font-weight: 400;
+  font-size: 100px;
+  font-style: normal;
+  color:white;
+}
+
+h4 {
+  color: var(--tertiary-color);
+  font-weight: bold;
+  text-align: center;
+}
 
 .subnav-hero-section {
     text-align: center;
@@ -93,18 +106,20 @@ body{
 }
 
 .modal {
-  background-color: white;
+  background-color: rgba(255,255,255,0.85);
   width: 60%;
   height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  border-radius: 15px;
 }
 
 .checkbox-row {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .checkbox-column {
@@ -122,6 +137,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-bottom: 20px;
 }
 
 .mov-image-width {
@@ -136,6 +152,22 @@ iframe {
   width:560px;
   height:315px
 } 
+
+.search-button{
+  display: block;
+  background-color: var(--tertiary-color);
+  width: 50%;
+  color: white;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.search-button:hover{
+  background-color: var(--accent-color);
+}
 /* End of modal Css   */
 
   
@@ -157,10 +189,84 @@ footer {
   
 .watchedbtn {
   display: block;
-  background-color: var(--accent-color);
-  border-color: black;
+  background-color: var(--secondary-color);
+  width: 50%;
+  color: white;
   border: 1px solid;
   border-radius: 15px;
-  padding: 3px;
-  margin: 5px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.watchedbtn:hover{
+  background-color: var(--tertiary-color);
+}
+
+
+/* Checkbox modals on medium to small screens */
+@media screen and (max-width:1170px) {
+  .video-card {
+    width: 95%
+
+  }
+}
+
+/* Checkbox modals on medium to small screens */
+@media screen and (max-width:900px) {
+
+  .modal {
+    height: 60vh;
+  }
+
+  .watchedbtn {
+    width:75%
+  }
+
+  .checkbox-row {
+    flex-direction: column;
+  }
+  
+  .checkbox-column {
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px dotted black;
+  }
+}
+  
+  
+@media screen and (max-width:600px) {
+  .modal {
+    width: 100vw
+  }
+
+  .watchedbtn {
+    width:100%
+  }
+
+  .movie-card {
+    width: 45vw;
+  }
+}
+  
+  
+@media screen and (max-width:400px) { 
+  .subnav-hero-section {
+   display: block;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+  }
+
+  .watchedbtn {
+    font-size: 12px;
+  }
+}
+
+
+@media screen and (max-height:600px) {
+  .modal {
+   height: 85vh;
+  }
 }
