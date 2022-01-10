@@ -34,7 +34,17 @@ var searchPodcastBtn = document.querySelector("#search-podcasts");
 var podcastSuggestions = document.querySelector("#podcast-suggestion");
 var podcastModal = document.querySelector("#podcast-modal");
 var runPodcastSearch = document.querySelector("#search-podcast");
- 
+
+var clearDisplay = function () {
+    if(document.querySelector(".video-card"))
+    {
+        document.querySelectorAll(".video-card").forEach(el => el.remove());
+    }
+    if(document.querySelector(".movie-card"))
+    {
+        document.querySelectorAll(".movie-card").forEach(el => el.remove());
+    }
+}
 
 // functions for Movie Search
 var movieAPI = function (genre) {
@@ -95,6 +105,7 @@ searchMoviesBtn.addEventListener("click", function(){
 
 runGenreSearch.addEventListener('click', function(){
     modalBg.classList.remove("bg-active");
+    clearDisplay ();
     for ( i = 0; i < checkboxes.length; i++)  {
         if ( checkboxes[i].checked === true ){
             str += checkboxes[i].value + ","
@@ -162,10 +173,7 @@ searchYoutubeBtn.addEventListener("click", function() {
 
 runYoutubeSearch.addEventListener("click", function(){
     event.preventDefault();
-    if(document.querySelector(".video-card"))
-    {
-        document.querySelectorAll(".video-card").forEach(el => el.remove());
-    }
+    clearDisplay ();
     var keyword = inputOne.value.trim();
     youtubeAPI(keyword);
     youtubeModalBg.classList.remove("bg-active");
