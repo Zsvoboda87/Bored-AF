@@ -242,30 +242,30 @@ runPodcastSearch.addEventListener("click", function(){
 
 homeBtn.addEventListener("click", clearDisplay);
 
-/// extra in case we want it?
-// search for books
-// var searchBooks = function() {
+// extra in case we want it?//
 
-//     var bookApiUrl = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + bookKey;
+var searchNews = function() {
 
-//     fetch(bookApiUrl).then(function(response){
-//         if(response.ok) {
-//             response.json().then(function(data){
-//                 console.log(response);
-//                 for(i=0; i < 4; i++) {
-//                     var bTitle = data.results.books[i].title;
-//                     var bImageUrl = data.results.books[i].book_image;
-//                     var bookLink = data.results.books[i].amazon_product_url;
-//                     displayBooks(bTitle, bImageUrl)
-//                 }
-            
-//             })
-//         } else {
-//             window.alert("selection not valid")
-//         }
-//     });
-// };
-
+    var newsApiUrl = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=IYDpG9xMMIk6UUTyg8wlaTFT4MCtOg7W";
+ 
+    fetch(newsApiUrl).then(function(response){
+        if(response.ok) {
+            response.json().then(function(data){
+                console.log(data);
+                var newsTitle = data.results[0].title;
+                console.log(newsTitle);
+                var newsURL = data.results[0].url;
+                console.log(newsURL);
+                var newsImage = data.results[0].media[0].media-metadata[2].url;
+                console.log(newsImage);
+                
+            })
+        } else {
+            window.alert("selection not valid")
+        }
+    });
+};
+searchNews();
 // var displayBooks = function(bTitle, bImageUrl) {
 
 //     var bookCard = document.createElement("div")
@@ -287,3 +287,4 @@ homeBtn.addEventListener("click", clearDisplay);
 // searchBooksBtn.addEventListener("click", function(){
 //     searchBooks();
 // });
+
