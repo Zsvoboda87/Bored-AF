@@ -250,11 +250,12 @@ var searchNews = function() {
     fetch(newsApiUrl).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
-                var newsTitle = data.results[0].title;
-                var newsURL = data.results[0].url;
+            for(i=0; i<10; i++) {
+                var newsTitle = data.results[i].title;
+                var newsURL = data.results[i].url;
                 // var newsImage = data.results[0].media[0].media-metadata[2].url;
                 displayNews(newsTitle,newsURL);
-                
+            }    
             })
         } else {
             window.alert("selection not valid")

@@ -203,6 +203,9 @@ footer {
   background-color: var(--tertiary-color);
 }
 
+.news-card a {
+  font-size: 24px;
+}
 
 /* Checkbox modals on medium to small screens */
 @media screen and (max-width:1170px) {
