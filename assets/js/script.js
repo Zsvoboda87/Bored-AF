@@ -44,6 +44,10 @@ var clearDisplay = function () {
     {
         document.querySelectorAll(".movie-card").forEach(el => el.remove());
     }
+    if(document.querySelector(".podcast-card"))
+    {
+        document.querySelectorAll(".podcast-card").forEach(el => el.remove());
+    }
 }
 
 // functions for Movie Search
@@ -202,6 +206,8 @@ var podcastSearch = function(genre) {
 var displayPodcasts = function(pTitle, pImageUrl) {
     
     var podcastCard = document.createElement("div")
+    podcastCard.classList.add("podcast-card");
+    podcastCard.classList.add("mov-image-width");
 
     var podcastTitleEl = document.createElement("h4");
     podcastTitleEl.textContent = pTitle;
@@ -209,7 +215,6 @@ var displayPodcasts = function(pTitle, pImageUrl) {
 
     var podcastImageEl = document.createElement("img");
     podcastImageEl.src = pImageUrl;
-    podcastImageEl.classList.add("mov-image-width");
     podcastCard.appendChild(podcastImageEl);
 
     podcastSuggestions.appendChild(podcastCard);
@@ -224,7 +229,7 @@ searchPodcastBtn.addEventListener("click", function() {
 });
 
 runPodcastSearch.addEventListener("click", function(){
-    console.log("clicked");
+    clearDisplay();
     podcastModal.classList.remove("bg-active");
     for (i =0; i <checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
@@ -235,7 +240,7 @@ runPodcastSearch.addEventListener("click", function(){
     resetCheckboxes();
 })
 
-
+homeBtn.addEventListener("click", clearDisplay);
 
 /// extra in case we want it?
 // search for books
