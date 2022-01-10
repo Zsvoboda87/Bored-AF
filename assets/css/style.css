@@ -139,17 +139,19 @@ iframe {
 /* End of modal Css   */
 
   
-footer{
+footer {
     background-color: var(--tertiary-color);
     padding: 1%;
     color: white;
     display: flex;
-    /* position: absolute; */
+    position: fixed;
     bottom: 0;
+    margin-right: auto;
+    margin-left: auto;
     width: 100%;
 }
 
-  .footer-text{
+  .footer-text {
     text-align: center;
 }
   
