@@ -117,8 +117,9 @@ h4 {
 }
 
 .checkbox-row {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .checkbox-column {
@@ -199,3 +200,33 @@ footer{
 .watchedbtn:hover{
   background-color: var(--tertiary-color);
 }
+/* Checkbox modals on medium to small screens */
+@media screen and (max-width:900px) {
+
+  .modal {
+    height: 60vh;
+  }
+
+  .checkbox-row {
+    flex-direction: column;
+  }
+  
+  .checkbox-column {
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px dotted black;
+  }
+  
+  
+  @media screen and (max-width:600px) {
+  .modal {
+    width: 100vw
+  }
+  }
+  
+  
+  @media screen and (max-width:400px) { 
+  .subnav-hero-section {
+   display: block;
+  }
+  
