@@ -97,6 +97,10 @@ var saveMovies = function (e) {
     x++;
 };
 
+if(localStorage.getItem("watched")){
+    watched = JSON.parse(localStorage.getItem("watched"));
+}
+
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {

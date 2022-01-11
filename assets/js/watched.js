@@ -3,7 +3,6 @@ var previousmovies = document.querySelector("#wmovies");
 
 var checklocal = function() {
     if (localStorage.getItem("watched")) {
-        console.log(watchedmv);
         for (i=0; i<watchedmv.length; i++) {
             var mTitle = watchedmv[i].title;
             var mImageURL = watchedmv[i].image;
