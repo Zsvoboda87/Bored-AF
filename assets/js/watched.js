@@ -13,10 +13,11 @@ var checklocal = function() {
 
 
  var displaywatched = function(mTitle, mImageURL) {
-     console.log(mTitle);
-     console.log(mImageURL);
+    //  console.log(mTitle);
+    //  console.log(mImageURL);
     
     var movieCard = document.createElement("div")
+    movieCard.classList.add("mov-image-width")
 
     var movTitleEl = document.createElement("h4");
     movTitleEl.setAttribute("data-mTitle", mTitle)
@@ -25,7 +26,7 @@ var checklocal = function() {
 
     var movImageEl = document.createElement("img");
     movImageEl.src = mImageURL
-    movImageEl.classList.add("mov-image-width")
+    
     movieCard.appendChild(movImageEl);
 
     previousmovies.appendChild(movieCard);
