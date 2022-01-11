@@ -55,7 +55,7 @@ var movieAPI = function (genre) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                for(i=0; i < 4; i++) {
+                for(i=0; i < 16; i++) {
                 var r = (Math.floor(Math.random() * 50));
                 var mTitle = data.results[r].title;
                 var mImageURL = data.results[r].image
