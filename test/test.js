@@ -14,5 +14,5 @@ for(i=0; i<arrMovies.length; i++){
 }
 
 function saveToLocal(e) {
-    //console.log(e.target.previousElementSibling.dataset.mtitle)
+    localStorage.setItem(e.target.previousElementSibling.dataset.mtitle)
 }
