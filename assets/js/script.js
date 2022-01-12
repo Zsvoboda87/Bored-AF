@@ -23,6 +23,7 @@ var promptArray = [ "What is your favorite animal?","What is your favorite food?
 //save watched movies var
 var watched = [];
 var x = 0;
+var watchedmv = JSON.parse(localStorage.getItem("watched"));
 
 //variables for NYT book search
 var searchNewsBtn = document.querySelector("#search-news");
@@ -55,11 +56,14 @@ var movieAPI = function (genre) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                for(i=0; i < 4; i++) {
+                for(i=0; i < 16; i++) {
                 var r = (Math.floor(Math.random() * 50));
                 var mTitle = data.results[r].title;
                 var mImageURL = data.results[r].image
-                displayMovies(mTitle, mImageURL)
+                var saved = {title:mTitle, image:mImageURL};
+                if (!watchedmv.includes(saved)) {
+                    displayMovies(mTitle, mImageURL)
+                }
             }
         
         })} else {
@@ -130,8 +134,22 @@ var saveMovies = function (e) {
     };
     localStorage.setItem("watched", JSON.stringify(watched));
     x++;
+    //make 
+    e.target.parentNode.remove();
 };
 
+if(localStorage.getItem("watched")){
+    watched = JSON.parse(localStorage.getItem("watched"));
+}
+
+//remove movies from list
+// var removewatched = function(movietitle,movieimage) {
+//     console.log(movietitle);
+//     console.log(movieimage);
+//     var tempwatched = [];
+//     //remove card 
+
+// }
 
 // function for YouTube Search
 var youtubeAPI = function (keyword) {
