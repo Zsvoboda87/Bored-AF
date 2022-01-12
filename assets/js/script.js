@@ -65,9 +65,13 @@ var movieAPI = function (genre) {
                 var mTitle = data.results[r].title;
                 var mImageURL = data.results[r].image
                 var saved = {title:mTitle, image:mImageURL};
-                if (!watchedmv.includes(saved)) {
-                    displayMovies(mTitle, mImageURL)
-                }
+                    if (watchedmv != null) {
+                        if (!watchedmv.includes(saved)) {
+                            displayMovies(mTitle, mImageURL)
+                        }
+                    } else {
+                        displayMovies(mTitle, mImageURL)
+                    }
             }
         
         })} else {

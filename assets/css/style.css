@@ -283,8 +283,8 @@ footer {
     width:100%;
   }
 }
-/* Media query for screens less that 400px wide, small phone screens*/
-@media screen and (max-width:400px) { 
+/* Media query for screens less that 500px wide, small phone screens*/
+@media screen and (max-width:500px) { 
   .subnav-hero-section {
    display: block;
   }
