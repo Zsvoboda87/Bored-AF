@@ -197,6 +197,7 @@ runYoutubeSearch.addEventListener("click", function(){
     clearDisplay ();
     var keyword = inputOne.value.trim();
     youtubeAPI(keyword);
+    inputOne.value = ""
     youtubeModalBg.classList.remove("bg-active");
 })
 
@@ -268,14 +269,17 @@ var searchNews = function() {
     fetch(newsApiUrl).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
+                console.log(data)
+                
             for(i=0; i<10; i++) {
-                if(data.results[i].media.length == 0) {
+                if (data.results[i].media.length == 0) {
                     var newsImage = "./assets/images/BoredAf.png"
                 } else {
-                var newsImage = data.results[i].media[0]["media-metadata"][2].url;
+                    var newsImage = data.results[i].media[0]["media-metadata"][2].url
                 }
                 var newsTitle = data.results[i].title;
                 var newsURL = data.results[i].url;
+            
                 displayNews(newsTitle,newsURL, newsImage);
             }    
             })
@@ -285,12 +289,14 @@ var searchNews = function() {
     });
 };
 
-var displayNews = function(nTitle, articleUrl, nImageUrl) {
+
+
+var displayNews = function(nTitle, nArtUrl, nImageUrl ) {
 
     var newsCard = document.createElement("a")
     newsCard.classList.add("news-card");
-    newsCard.href = articleUrl;
-    newsCard.classList.add("mov-image-width");
+    newsCard.classList.add("video-card");
+    newsCard.href = nArtUrl;
 
     var newsTitleEl = document.createElement("h4");
     newsTitleEl.textContent = nTitle;
