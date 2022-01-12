@@ -205,6 +205,9 @@ footer {
     text-align: center;
 }
   
+.footer-text p {
+  margin-bottom: 0;
+}
 .watchedbtn {
   display: block;
   background-color: var(--secondary-color);
