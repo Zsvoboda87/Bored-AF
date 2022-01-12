@@ -219,8 +219,9 @@ var podcastSearch = function(genre) {
             response.json().then(function(data){
                 console.log(response);
                 for (i=0; i <4; i++) {
-                    var pTitle = data.results[i].collectionCensoredName;
-                    var pImageUrl = data.results[i].artworkUrl600;
+                    var r = (Math.floor(Math.random() * 50));
+                    var pTitle = data.results[r].collectionCensoredName;
+                    var pImageUrl = data.results[r].artworkUrl600;
                     displayPodcasts(pTitle, pImageUrl);
                 }
             })
@@ -260,7 +261,7 @@ runPodcastSearch.addEventListener("click", function(){
     podcastModal.classList.remove("bg-active");
     for (i =0; i <checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
-            str += checkboxes[i].value + ","
+            str += checkboxes[i].value
         }
     };
     podcastSearch (str);
