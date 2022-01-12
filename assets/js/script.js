@@ -47,6 +47,10 @@ var clearDisplay = function () {
     {
         document.querySelectorAll(".podcast-card").forEach(el => el.remove());
     }
+    if(document.querySelector(".news-card"))
+    {
+        document.querySelectorAll(".news-card").forEach(el => el.remove());
+    }
 }
 
 // functions for Movie Search
@@ -288,6 +292,7 @@ var displayNews = function(nTitle, articleUrl, nImageUrl) {
 
 // event listeners
 searchNewsBtn.addEventListener("click", function(){
+    clearDisplay();
     searchNews();
 });
 
