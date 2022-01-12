@@ -185,6 +185,7 @@ runYoutubeSearch.addEventListener("click", function(){
 var podcastSearch = function(genre) {
     
     var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + genre;
+    //"https://itunes.apple.com/search?term=podcast&genreId=" + genreId + "1402&limit=200"
 
     fetch (podcastApi).then(function(response){
         if(response.ok) {
@@ -192,7 +193,7 @@ var podcastSearch = function(genre) {
                 console.log(response);
                 for (i=0; i <4; i++) {
                     var pTitle = data.results[i].collectionCensoredName;
-                    var pImageUrl = data.results[i].artworkUrl100;
+                    var pImageUrl = data.results[i].artworkUrl600;
                     displayPodcasts(pTitle, pImageUrl);
                 }
             })
