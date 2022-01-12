@@ -251,10 +251,14 @@ var searchNews = function() {
         if(response.ok) {
             response.json().then(function(data){
             for(i=0; i<10; i++) {
+                if(data.results[i].media.length == 0) {
+                    var newsImage = "./assets/images/BoredAf.png"
+                } else {
+                var newsImage = data.results[i].media[0]["media-metadata"][2].url;
+                }
                 var newsTitle = data.results[i].title;
                 var newsURL = data.results[i].url;
-                // var newsImage = data.results[0].media[0].media-metadata[2].url;
-                displayNews(newsTitle,newsURL);
+                displayNews(newsTitle,newsURL, newsImage);
             }    
             })
         } else {
@@ -263,24 +267,20 @@ var searchNews = function() {
     });
 };
 
-var displayNews = function(nTitle, nImageUrl) {
+var displayNews = function(nTitle, articleUrl, nImageUrl) {
 
-    var newsCard = document.createElement("div")
+    var newsCard = document.createElement("a")
     newsCard.classList.add("news-card");
+    newsCard.href = articleUrl;
+    newsCard.classList.add("mov-image-width");
 
     var newsTitleEl = document.createElement("h4");
     newsTitleEl.textContent = nTitle;
     newsCard.appendChild(newsTitleEl);
 
-    var newsURLEl = document.createElement("a");
-    newsURLEl.textContent = "Read This Article Here";
-    newsURLEl.href = nImageUrl;
-    newsCard.appendChild(newsURLEl);
-
-    //var newsImageEl = document.createElement("img");
-    // newsImageEl.src = nImageUrl;
-    // newsImageEl.classList.add("mov-image-width");
-    // newsCard.appendChild(newsImageEl);
+    var newsImageEl = document.createElement("img");
+    newsImageEl.src = nImageUrl;
+    newsCard.appendChild(newsImageEl);
 
     movieSuggestions.appendChild(newsCard);
 };
