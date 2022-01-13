@@ -116,6 +116,11 @@ h4 {
   border-radius: 15px;
 }
 
+.modal h2{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .checkbox-row {
   width: 100%;
   display: flex;
@@ -133,6 +138,24 @@ h4 {
   pointer-events: auto;
 }
 
+.search-button{
+  display: block;
+  background-color: var(--tertiary-color);
+  width: 50%;
+  color: white;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.search-button:hover{
+  background-color: var(--accent-color);
+}
+/* End of modal CSS   */
+
+/* Classes for dynamically generated content */
 .flex-evenly {
   display: flex;
   flex-wrap: wrap;
@@ -141,7 +164,7 @@ h4 {
 }
 
 .mov-image-width {
-  width: 20vw;
+  width: 22vw;
 }
 
 .video-card {
@@ -169,24 +192,7 @@ iframe {
   justify-content: center;
 }
 
-.search-button{
-  display: block;
-  background-color: var(--tertiary-color);
-  width: 50%;
-  color: white;
-  border: 1px solid;
-  border-radius: 15px;
-  padding: 10px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.search-button:hover{
-  background-color: var(--accent-color);
-}
-/* End of modal Css   */
-
-  
+/* Footer style */
 footer {
     background-color: var(--tertiary-color);
     padding: 1%;
@@ -199,7 +205,7 @@ footer {
     width: 100%;
 }
 
-  .footer-text {
+.footer-text {
     text-align: center;
 }
   
