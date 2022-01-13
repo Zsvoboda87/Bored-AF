@@ -170,6 +170,14 @@ iframe {
 }
 /* End of modal Css   */
 
+.bored-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#bored-face {
+  height: 40vh;
+}
   
 footer {
     background-color: var(--tertiary-color);

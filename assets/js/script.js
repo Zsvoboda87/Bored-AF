@@ -1,6 +1,7 @@
 $(document).foundation();
 //universal variables
 var homeBtn = document.querySelector("#home");
+var boredFace = document.querySelector("#bored-face");
 
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
@@ -53,6 +54,10 @@ var clearDisplay = function () {
     }
 }
 
+var clearImage = function () {
+    boredFace.remove();
+}
+
 // functions for Movie Search
 var movieAPI = function (genre) {
     var apiUrl = "https://imdb-api.com/API/AdvancedSearch/k_0m8x9src/?genres=" + genre + "&count=50"
@@ -80,6 +85,8 @@ var resetCheckboxes = function() {
 }
 
 var displayMovies = function (mTitle, mImageURL) {
+    clearImage();
+
     var movieCard = document.createElement("div")
     movieCard.classList.add("mov-image-width")
     movieCard.classList.add("movie-card")
@@ -155,6 +162,8 @@ var youtubeAPI = function (keyword) {
 };
 
 var displayVideos = function(youtubeID, vidtitle) {
+    clearImage();
+
     var videoCard = document.createElement("div")
     videoCard.classList.add("video-card")
 
@@ -208,6 +217,7 @@ var podcastSearch = function(genre) {
 };
 
 var displayPodcasts = function(pTitle, pImageUrl) {
+    clearImage();
     
     var podcastCard = document.createElement("div")
     podcastCard.classList.add("podcast-card");
@@ -244,7 +254,9 @@ runPodcastSearch.addEventListener("click", function(){
     resetCheckboxes();
 })
 
-homeBtn.addEventListener("click", clearDisplay);
+homeBtn.addEventListener("click", function(){
+    location.reload()
+});
 
 // extra in case we want it?//
 
@@ -273,6 +285,7 @@ var searchNews = function() {
 };
 
 var displayNews = function(nTitle, articleUrl, nImageUrl) {
+    clearImage();
 
     var newsCard = document.createElement("a")
     newsCard.classList.add("news-card");
