@@ -153,6 +153,24 @@ iframe {
   height:315px
 } 
 
+.news-card {
+  width: 45vw;
+  margin-bottom: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.news-card a{
+  display:flex;
+  justify-content: center;
+}
+.news-card img{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
+
+
 .search-button{
   display: block;
   background-color: var(--tertiary-color);
@@ -218,15 +236,23 @@ footer {
   font-size: 24px;
 }
 
-/* Checkbox modals on medium to small screens */
+
+/* Media query for screens less that 1170px wide, Small computers, tablets*/
 @media screen and (max-width:1170px) {
   .video-card {
     width: 95%
-
+  }
+  .video-card h3{
+  display: flex;
+  justify-content: center;    
+  }
+  .video-card div{
+    display: flex;
+    justify-content: center;    
   }
 }
 
-/* Checkbox modals on medium to small screens */
+/* Media query for screens less that 900px wide, Tablets, large phone screens*/
 @media screen and (max-width:900px) {
 
   .modal {
@@ -247,8 +273,7 @@ footer {
     border-bottom: 1px dotted black;
   }
 }
-  
-  
+/* Media query for screens less that 600px wide, medium phone screeens*/
 @media screen and (max-width:600px) {
   .modal {
     width: 100vw
@@ -261,10 +286,13 @@ footer {
   .movie-card {
     width: 45vw;
   }
+
+  .video-card iframe{
+    width:100%;
+  }
 }
-  
-  
-@media screen and (max-width:400px) { 
+/* Media query for screens less that 500px wide, small phone screens*/
+@media screen and (max-width:500px) { 
   .subnav-hero-section {
    display: block;
   }
@@ -278,7 +306,7 @@ footer {
   }
 }
 
-
+/* Media query for screens with less than 600px tall*/
 @media screen and (max-height:600px) {
   .modal {
    height: 85vh;
