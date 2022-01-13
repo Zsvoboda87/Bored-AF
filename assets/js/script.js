@@ -36,6 +36,10 @@ var podcastSuggestions = document.querySelector("#podcast-suggestion");
 var podcastModal = document.querySelector("#podcast-modal");
 var runPodcastSearch = document.querySelector("#search-podcast");
 
+var footerFix = function() {
+    document.querySelector("footer").classList.add("footer-pos-rel")
+};
+
 var clearDisplay = function () {
     if(document.querySelector(".video-card"))
     {
@@ -94,7 +98,7 @@ var resetCheckboxes = function() {
 
 var displayMovies = function (mTitle, mImageURL) {
     clearImage();
-
+    footerFix();
     var movieCard = document.createElement("div")
     movieCard.classList.add("mov-image-width")
     movieCard.classList.add("movie-card")
@@ -185,7 +189,7 @@ var youtubeAPI = function (keyword) {
 
 var displayVideos = function(youtubeID, vidtitle) {
     clearImage();
-
+    footerFix();
     var videoCard = document.createElement("div")
     videoCard.classList.add("video-card")
 
@@ -242,7 +246,7 @@ var podcastSearch = function(genre) {
 
 var displayPodcasts = function(pTitle, pImageUrl) {
     clearImage();
-    
+    footerFix();
     var podcastCard = document.createElement("div")
     podcastCard.classList.add("podcast-card");
     podcastCard.classList.add("mov-image-width");
@@ -271,7 +275,7 @@ runPodcastSearch.addEventListener("click", function(){
     podcastModal.classList.remove("bg-active");
     for (i =0; i <checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
-            str += checkboxes[i].value
+            str += checkboxes[i].value + "&"
         }
     };
     podcastSearch (str);
@@ -313,7 +317,7 @@ var searchNews = function() {
 
 var displayNews = function(nTitle, articleUrl, nImageUrl) {
     clearImage();
-
+    footerFix();
     var newsCard = document.createElement("a")
     newsCard.classList.add("news-card");
     newsCard.classList.add("video-card");

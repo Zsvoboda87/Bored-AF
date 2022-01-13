@@ -116,6 +116,18 @@ h4 {
   border-radius: 15px;
 }
 
+.modal h2{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-parent{
+  display:flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+
 .checkbox-row {
   width: 100%;
   display: flex;
@@ -133,6 +145,24 @@ h4 {
   pointer-events: auto;
 }
 
+.search-button{
+  display: block;
+  background-color: var(--tertiary-color);
+  width: 50%;
+  color: white;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.search-button:hover{
+  background-color: var(--accent-color);
+}
+/* End of modal CSS   */
+
+/* Classes for dynamically generated content */
 .flex-evenly {
   display: flex;
   flex-wrap: wrap;
@@ -141,7 +171,7 @@ h4 {
 }
 
 .mov-image-width {
-  width: 20vw;
+  width: 22vw;
 }
 
 .video-card {
@@ -168,54 +198,6 @@ iframe {
   display:flex;
   justify-content: center;
 }
-
-
-
-.search-button{
-  display: block;
-  background-color: var(--tertiary-color);
-  width: 50%;
-  color: white;
-  border: 1px solid;
-  border-radius: 15px;
-  padding: 10px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.search-button:hover{
-  background-color: var(--accent-color);
-}
-/* End of modal Css   */
-
-.bored-parent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-#bored-face {
-  height: 40vh;
-}
-  
-footer {
-    background-color: var(--tertiary-color);
-    padding: 1%;
-    color: white;
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-}
-
-  .footer-text {
-    text-align: center;
-}
-  
-.footer-text p {
-  margin-bottom: 0;
-}
 .watchedbtn {
   display: block;
   background-color: var(--secondary-color);
@@ -232,9 +214,48 @@ footer {
   background-color: var(--tertiary-color);
 }
 
+<<<<<<< HEAD
 .news-card a {
   font-size: 24px;
 }
+
+
+/* Footer style */
+=======
+.bored-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#bored-face {
+  height: 40vh;
+}
+  
+>>>>>>> 54b1cfa30b31a00fe51604d3acb74c55817c6dbe
+footer {
+    background-color: var(--tertiary-color);
+    padding: 1%;
+    color: white;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.footer-text {
+    text-align: center;
+}
+  
+.footer-text p {
+  margin-bottom: 0;
+}
+
+.footer-pos-rel {
+  position: relative;
+}
+
 
 
 /* Media query for screens less that 1170px wide, Small computers, tablets*/
