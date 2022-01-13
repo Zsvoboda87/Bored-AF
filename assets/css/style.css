@@ -169,8 +169,6 @@ iframe {
   justify-content: center;
 }
 
-
-
 .search-button{
   display: block;
   background-color: var(--tertiary-color);
@@ -208,6 +206,11 @@ footer {
 .footer-text p {
   margin-bottom: 0;
 }
+
+.footer-pos-rel {
+  position: relative;
+}
+
 .watchedbtn {
   display: block;
   background-color: var(--secondary-color);

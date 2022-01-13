@@ -35,6 +35,10 @@ var podcastSuggestions = document.querySelector("#podcast-suggestion");
 var podcastModal = document.querySelector("#podcast-modal");
 var runPodcastSearch = document.querySelector("#search-podcast");
 
+var footerFix = function() {
+    document.querySelector("footer").classList.add("footer-pos-rel")
+};
+
 var clearDisplay = function () {
     if(document.querySelector(".video-card"))
     {
@@ -88,6 +92,7 @@ var resetCheckboxes = function() {
 }
 
 var displayMovies = function (mTitle, mImageURL) {
+    footerFix();
     var movieCard = document.createElement("div")
     movieCard.classList.add("mov-image-width")
     movieCard.classList.add("movie-card")
@@ -177,6 +182,7 @@ var youtubeAPI = function (keyword) {
 };
 
 var displayVideos = function(youtubeID, vidtitle) {
+    footerFix();
     var videoCard = document.createElement("div")
     videoCard.classList.add("video-card")
 
@@ -232,6 +238,7 @@ var podcastSearch = function(genre) {
 };
 
 var displayPodcasts = function(pTitle, pImageUrl) {
+    footerFix();
     
     var podcastCard = document.createElement("div")
     podcastCard.classList.add("podcast-card");
@@ -261,14 +268,17 @@ runPodcastSearch.addEventListener("click", function(){
     podcastModal.classList.remove("bg-active");
     for (i =0; i <checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
-            str += checkboxes[i].value
+            str += checkboxes[i].value + "&"
         }
     };
     podcastSearch (str);
     resetCheckboxes();
 })
 
-homeBtn.addEventListener("click", clearDisplay);
+homeBtn.addEventListener("click", function() {
+    clearDisplay();
+    document.querySelector("footer").classList.remove("footer-pos-rel")
+});
 
 // extra in case we want it?//
 
@@ -302,6 +312,7 @@ var searchNews = function() {
 
 
 var displayNews = function(nTitle, nArtUrl, nImageUrl ) {
+    footerFix();
 
     var newsCard = document.createElement("a")
     newsCard.classList.add("news-card");
