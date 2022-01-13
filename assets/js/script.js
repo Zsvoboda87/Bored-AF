@@ -2,6 +2,7 @@ $(document).foundation();
 //universal variables
 var homeBtn = document.querySelector("#home");
 var closeBtn = document.querySelector("#close-modal");
+var boredFace = document.querySelector("#bored-face");
 
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
@@ -36,6 +37,10 @@ var podcastSuggestions = document.querySelector("#podcast-suggestion");
 var podcastModal = document.querySelector("#podcast-modal");
 var runPodcastSearch = document.querySelector("#search-podcast");
 
+var footerFix = function() {
+    document.querySelector("footer").classList.add("footer-pos-rel")
+};
+
 var clearDisplay = function () {
     if(document.querySelector(".video-card"))
     {
@@ -49,6 +54,14 @@ var clearDisplay = function () {
     {
         document.querySelectorAll(".podcast-card").forEach(el => el.remove());
     }
+    if(document.querySelector(".news-card"))
+    {
+        document.querySelectorAll(".news-card").forEach(el => el.remove());
+    }
+}
+
+var clearImage = function () {
+    boredFace.remove();
 }
 
 // functions for Movie Search
@@ -62,9 +75,13 @@ var movieAPI = function (genre) {
                 var mTitle = data.results[r].title;
                 var mImageURL = data.results[r].image
                 var saved = {title:mTitle, image:mImageURL};
-                if (!watchedmv.includes(saved)) {
-                    displayMovies(mTitle, mImageURL)
-                }
+                    if (watchedmv != null) {
+                        if (!watchedmv.includes(saved)) {
+                            displayMovies(mTitle, mImageURL)
+                        }
+                    } else {
+                        displayMovies(mTitle, mImageURL)
+                    }
             }
         
         })} else {
@@ -81,6 +98,8 @@ var resetCheckboxes = function() {
 }
 
 var displayMovies = function (mTitle, mImageURL) {
+    clearImage();
+    footerFix();
     var movieCard = document.createElement("div")
     movieCard.classList.add("mov-image-width")
     movieCard.classList.add("movie-card")
@@ -177,6 +196,8 @@ var youtubeAPI = function (keyword) {
 };
 
 var displayVideos = function(youtubeID, vidtitle) {
+    clearImage();
+    footerFix();
     var videoCard = document.createElement("div")
     videoCard.classList.add("video-card")
 
@@ -205,20 +226,23 @@ runYoutubeSearch.addEventListener("click", function(){
     clearDisplay ();
     var keyword = inputOne.value.trim();
     youtubeAPI(keyword);
+    inputOne.value = ""
     youtubeModalBg.classList.remove("bg-active");
 })
 
 var podcastSearch = function(genre) {
     
     var podcastApi = "https://itunes.apple.com/search?entity=podcast&term=" + genre;
+    //"https://itunes.apple.com/search?term=podcast&genreId=" + genreId + "1402&limit=200"
 
     fetch (podcastApi).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
                 console.log(response);
                 for (i=0; i <4; i++) {
-                    var pTitle = data.results[i].collectionCensoredName;
-                    var pImageUrl = data.results[i].artworkUrl100;
+                    var r = (Math.floor(Math.random() * 50));
+                    var pTitle = data.results[r].collectionCensoredName;
+                    var pImageUrl = data.results[r].artworkUrl600;
                     displayPodcasts(pTitle, pImageUrl);
                 }
             })
@@ -229,7 +253,8 @@ var podcastSearch = function(genre) {
 };
 
 var displayPodcasts = function(pTitle, pImageUrl) {
-    
+    clearImage();
+    footerFix();
     var podcastCard = document.createElement("div")
     podcastCard.classList.add("podcast-card");
     podcastCard.classList.add("mov-image-width");
@@ -258,14 +283,16 @@ runPodcastSearch.addEventListener("click", function(){
     podcastModal.classList.remove("bg-active");
     for (i =0; i <checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
-            str += checkboxes[i].value + ","
+            str += checkboxes[i].value + "&"
         }
     };
     podcastSearch (str);
     resetCheckboxes();
 })
 
-homeBtn.addEventListener("click", clearDisplay);
+homeBtn.addEventListener("click", function(){
+    location.reload()
+});
 
 // extra in case we want it?//
 
@@ -276,11 +303,18 @@ var searchNews = function() {
     fetch(newsApiUrl).then(function(response){
         if(response.ok) {
             response.json().then(function(data){
+                console.log(data)
+                
             for(i=0; i<10; i++) {
+                if (data.results[i].media.length == 0) {
+                    var newsImage = "./assets/images/BoredAf.png"
+                } else {
+                    var newsImage = data.results[i].media[0]["media-metadata"][2].url
+                }
                 var newsTitle = data.results[i].title;
                 var newsURL = data.results[i].url;
-                // var newsImage = data.results[0].media[0].media-metadata[2].url;
-                displayNews(newsTitle,newsURL);
+            
+                displayNews(newsTitle,newsURL, newsImage);
             }    
             })
         } else {
@@ -289,24 +323,21 @@ var searchNews = function() {
     });
 };
 
-var displayNews = function(nTitle, nImageUrl) {
-
-    var newsCard = document.createElement("div")
+var displayNews = function(nTitle, articleUrl, nImageUrl) {
+    clearImage();
+    footerFix();
+    var newsCard = document.createElement("a")
     newsCard.classList.add("news-card");
+    newsCard.classList.add("video-card");
+    newsCard.href = articleUrl;
 
     var newsTitleEl = document.createElement("h4");
     newsTitleEl.textContent = nTitle;
     newsCard.appendChild(newsTitleEl);
 
-    var newsURLEl = document.createElement("a");
-    newsURLEl.textContent = "Read This Article Here";
-    newsURLEl.href = nImageUrl;
-    newsCard.appendChild(newsURLEl);
-
-    //var newsImageEl = document.createElement("img");
-    // newsImageEl.src = nImageUrl;
-    // newsImageEl.classList.add("mov-image-width");
-    // newsCard.appendChild(newsImageEl);
+    var newsImageEl = document.createElement("img");
+    newsImageEl.src = nImageUrl;
+    newsCard.appendChild(newsImageEl);
 
     movieSuggestions.appendChild(newsCard);
 };
@@ -314,6 +345,7 @@ var displayNews = function(nTitle, nImageUrl) {
 
 // event listeners
 searchNewsBtn.addEventListener("click", function(){
+    clearDisplay();
     searchNews();
 });
 
