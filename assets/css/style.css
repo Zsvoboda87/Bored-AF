@@ -116,6 +116,15 @@ h4 {
   border-radius: 15px;
 }
 
+#close-modal, #close-modal-podcast, #close-modal-youtube {
+  position: relative;
+  top: 0;
+  left: 350px;
+  align-items: right;
+  appearance: none;
+}
+
+
 .modal h2{
   padding-left: 10px;
   padding-right: 10px;
@@ -214,14 +223,6 @@ iframe {
   background-color: var(--tertiary-color);
 }
 
-<<<<<<< HEAD
-.news-card a {
-  font-size: 24px;
-}
-
-
-/* Footer style */
-=======
 .bored-parent {
   display: flex;
   flex-direction: column;
@@ -231,7 +232,6 @@ iframe {
   height: 40vh;
 }
   
->>>>>>> 54b1cfa30b31a00fe51604d3acb74c55817c6dbe
 footer {
     background-color: var(--tertiary-color);
     padding: 1%;

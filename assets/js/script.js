@@ -1,7 +1,10 @@
 $(document).foundation();
 //universal variables
 var homeBtn = document.querySelector("#home");
+var closeBtn = document.querySelector("#close-modal");
 var boredFace = document.querySelector("#bored-face");
+var closeYoutbe = document.querySelector("#close-modal-youtube");
+var closePodcat = document.querySelector("#close-modal-podcast");
 
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
@@ -129,6 +132,13 @@ searchMoviesBtn.addEventListener("click", function(){
 
 })
 
+//event listener to close modal
+closeBtn.addEventListener('click', function(){
+    modalBg.classList.remove("bg-active");
+    clearDisplay ();
+    resetCheckboxes();
+})
+
 runGenreSearch.addEventListener('click', function(){
     modalBg.classList.remove("bg-active");
     clearDisplay ();
@@ -204,6 +214,13 @@ var displayVideos = function(youtubeID, vidtitle) {
     youtubeEL.appendChild(videoCard)
 }
 
+//event listener to close modal for youtube
+closeYoutbe.addEventListener("click", function(){
+    event.preventDefault();
+    clearDisplay ();
+    youtubeModalBg.classList.remove("bg-active");
+})
+
 // Event Listeners for Youtube
 searchYoutubeBtn.addEventListener("click", function() {
     youtubeModalBg.classList.add("bg-active");
@@ -269,6 +286,13 @@ searchPodcastBtn.addEventListener("click", function() {
     homeBtn.classList.remove("is-active");
     searchPodcastBtn.classList.add("is-active");
 });
+
+//event listener to close modal for podcasts
+closePodcat.addEventListener("click", function(){
+    clearDisplay();
+    podcastModal.classList.remove("bg-active");
+    resetCheckboxes();
+})
 
 runPodcastSearch.addEventListener("click", function(){
     clearDisplay();
