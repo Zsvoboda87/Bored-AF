@@ -116,6 +116,14 @@ h4 {
   border-radius: 15px;
 }
 
+#close-modal {
+  position: relative;
+  top: 0;
+  left: 350px;
+  align-items: right;
+  appearance: none;
+}
+
 .checkbox-row {
   width: 100%;
   display: flex;

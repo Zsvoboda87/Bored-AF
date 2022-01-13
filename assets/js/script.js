@@ -1,6 +1,7 @@
 $(document).foundation();
 //universal variables
 var homeBtn = document.querySelector("#home");
+var closeBtn = document.querySelector("#close-modal");
 
 // variables for Movie Search
 var searchMoviesBtn = document.querySelector("#search-movies");
@@ -108,6 +109,13 @@ searchMoviesBtn.addEventListener("click", function(){
     homeBtn.classList.remove("is-active");
     
 
+})
+
+//event listener to close modals
+closeBtn.addEventListener('click', function(){
+    modalBg.classList.remove("bg-active");
+    clearDisplay ();
+    resetCheckboxes();
 })
 
 runGenreSearch.addEventListener('click', function(){
