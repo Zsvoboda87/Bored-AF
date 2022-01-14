@@ -3,6 +3,9 @@
 ## Description
 An online service for introducing new topic or genre based content to the user. Bored-AF is a website for people with a little extra time to kill. The motivation behind the development was to provide a site where users can come and get entertainment suggestions with simple prompts. This project can be seen at https://zsvoboda87.github.io/Bored-AF/.
 
+## Preview
+![Screenshot] (./assets/images/bored-af.jpg)
+
 ## Installation
 To get the deployment enviroment to run, you can simple copy and paste or click on the link below.
 https://zsvoboda87.github.io/Bored-AF/
