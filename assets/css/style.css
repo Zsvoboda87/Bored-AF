@@ -116,6 +116,15 @@ h4 {
   border-radius: 15px;
 }
 
+#close-modal, #close-modal-podcast, #close-modal-youtube {
+  position: relative;
+  top: 0;
+  left: 350px;
+  align-items: right;
+  appearance: none;
+}
+
+
 .modal h2{
   padding-left: 10px;
   padding-right: 10px;
