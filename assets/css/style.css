@@ -214,14 +214,6 @@ iframe {
   background-color: var(--tertiary-color);
 }
 
-<<<<<<< HEAD
-.news-card a {
-  font-size: 24px;
-}
-
-
-/* Footer style */
-=======
 .bored-parent {
   display: flex;
   flex-direction: column;
@@ -231,7 +223,6 @@ iframe {
   height: 40vh;
 }
   
->>>>>>> 54b1cfa30b31a00fe51604d3acb74c55817c6dbe
 footer {
     background-color: var(--tertiary-color);
     padding: 1%;
